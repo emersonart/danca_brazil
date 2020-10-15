@@ -1,0 +1,472 @@
+/*!
+ 	*
+ 	* Developed by Emerson Bruno to dancabrazil
+ 	* Year 2020
+ 	* Copyright by Emerson
+ 	* 
+*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+:root{
+	--dancabrazil: #00b000;
+	--red-dancabrazil: #ff0000;
+	--purple-dancabrazil: #7f1d5a;
+	--light-purple-dancabrazil: #AC1F77;
+	--dark-purple-dancabrazil: #4E0E36;
+	--dark-red-dancabrazil: #6b2532;
+	--green-dancabrazil: #82ca9c;
+	--blue-dancabrazil: #2f3e80;
+	--dark-green-dancabrazil: #405a49;
+}
+*{
+	font-family: 'Work Sans';
+}
+body{
+	color: #2b2b2b;
+}
+
+.font-playfair{
+    font-family: 'Playfair Display'!important;
+}
+
+#mainNav img.navbar-brand{
+    max-width: 145px;
+}
+
+#mainNav, #mainNav a{
+    color: white;
+}
+
+.masthead {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 35rem;
+    padding: 15rem 0;
+    background: rgba(0,0,0,0.2) url(../images/bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    color: white!important;
+}
+
+.masthead h1{
+    font-family: 'Playfair Display'!important;
+    margin-bottom: 1.5em;
+    font-size: 3.3em;
+}
+.masthead h1 i{
+    font-style: italic;
+    font-family: 'Playfair Display'!important;
+}
+
+.masthead small{
+    font-weight: bold;
+    letter-spacing: .4em;
+    margin-bottom: 1.25em;
+    display: block;
+}
+
+.container-scroll-down{
+    position: absolute;
+    bottom: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.btn-scroll-down{
+    background:transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: rgba(255,255,225,0.5);
+}
+
+.btn-scroll-down:hover{
+    border-color: white;
+    color:white;
+    text-decoration: none;
+}
+
+.dancabrazil_404{
+	background: white;
+    border: 6px solid white;
+    border-radius: 100%;
+}
+.text-danger-dancabrazil{
+	color:var(--red-dancabrazil);
+}
+.bg-danger-dancabrazil{
+	background-color:var(--red-dancabrazil);
+	color:white;
+}
+
+.text-purple-dancabrazil{
+	color:var(--purple-dancabrazil);
+}
+.bg-purple-dancabrazil{
+	background-color:var(--purple-dancabrazil);
+	color:white;
+}
+
+.btn-success-dancabrazil{
+	background: var(--dancabrazil);
+	border-color: var(--dancabrazil);
+    border-radius: 0;
+    padding: 1em 1.5em;
+}
+
+.btn-success-dancabrazil:hover,.btn-success-dancabrazil.hover{
+    background: #049504;
+}
+
+.btn-danger-dancabrazil{
+    background: var(--red-dancabrazil);
+    border-color: var(--red-dancabrazil);
+    border-radius: 0;
+    padding: .8em 1.5em;
+}
+
+.btn-danger-dancabrazil:hover,.btn-danger-dancabrazil.hover{
+    background: #a91818;
+}
+
+.btn-purple{
+  background-color: var(--purple-dancabrazil);
+  color: white;
+  border-color: var(--purple-dancabrazil);
+}
+
+.btn-purple:hover {
+    color: white;
+    background-color: var(--light-purple-dancabrazil);
+    border-color: var(--light-purple-dancabrazil);
+}
+
+.btn-purple:not(:disabled):not(.disabled).active, 
+.btn-purple:not(:disabled):not(.disabled):active, 
+.show>.btn-purple.dropdown-toggle,
+.btn-purple.focus, .btn-purple:focus {
+    color: white;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    background-color: var(--dark-purple-dancabrazil);
+    border-color: var(--dark-purple-dancabrazil);
+}
+
+.btn-outline-purple{
+  color: var(--purple-dancabrazil);
+  border-color: var(--purple-dancabrazil);
+}
+.btn-outline-purple.with-white{
+  color: white;
+  border-color: white;
+}
+.btn-outline-purple:hover {
+    color: white;
+    background-color: var(--purple-dancabrazil);
+    border-color: var(--purple-dancabrazil);
+}
+
+.btn-outline-purple:not(:disabled):not(.disabled).active, 
+.btn-outline-purple:not(:disabled):not(.disabled):active, 
+.show>.btn-outline-purple.dropdown-toggle {
+    color: white;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    background-color: var(--purple-dancabrazil);
+    border-color: var(--purple-dancabrazil);
+}
+
+.btn-outline-purple.focus, .btn-outline-purple:focus,
+.btn-purple.focus, .btn-purple:focus {
+  box-shadow: 0 0 0 0.2rem rgba(127, 29, 90,.5);
+}
+
+.content-compartilhando p, .content-aulas p{
+    margin: 1.6em 0;
+}
+
+#horarios{
+    background: url('../images/bg_horarios.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+.bg-overlay{
+    background: rgba(0,0,0,0.35);
+}
+#depoimentos{
+    background: url('../images/bg_depoimentos.png');
+    background-size: cover;
+    background-position: center center;
+    color:white!important;
+}
+.instagram-images{
+    position: relative;
+    overflow: hidden;
+    transition: background .5s ease-in-out;
+    -webkit-transition: background .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out;
+    -o-transition: background .5s ease-in-out;
+}
+.instagram-images:before{
+    transition: background .5s ease-in-out;
+    -webkit-transition: background .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out;
+    -o-transition: background .5s ease-in-out;
+    content: '';
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right: 0;
+    background: transparent;
+}
+.instagram-images:hover:before{
+    background: rgba(0,0,0,0.4);
+}
+.instagram-images:hover{
+    
+    background-size: 120%!important;
+}
+
+
+
+a.arrows_dancabrazil:first-child{
+	margin-left: -15px!important;
+}
+a.arrows_dancabrazil:last-child{
+	margin-right: -15px!important;
+}
+
+.has-float-label .form-control:placeholder-shown:not(:focus)+* {
+    font-size: inherit;
+    opacity: .5;
+    top: .7em;
+}
+
+.has-float-label .form-control:focus::placeholder{
+	color:transparent;
+}
+.has-float-label label, .has-float-label>span{
+	background: white;
+	padding: 3px .5em;
+}
+
+/* for sm */
+
+.custom-switch.custom-switch-sm .custom-control-label {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+.custom-switch.custom-switch-sm .custom-control-label::before {
+    height: 1rem;
+    width: calc(1rem + 0.75rem);
+    border-radius: 2rem;
+}
+
+.custom-switch.custom-switch-sm .custom-control-label::after {
+    width: calc(1rem - 4px);
+    height: calc(1rem - 4px);
+    border-radius: calc(1rem - (1rem / 2));
+}
+
+.custom-switch.custom-switch-sm .custom-control-input:checked ~ .custom-control-label::after {
+    transform: translateX(calc(1rem - 0.25rem));
+}
+
+/* for md */
+
+.custom-switch.custom-switch-md .custom-control-label {
+    padding-left: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+.custom-switch.custom-switch-md .custom-control-label::before {
+    height: 1.5rem;
+    width: calc(2rem + 0.75rem);
+    border-radius: 3rem;
+}
+
+.custom-switch.custom-switch-md .custom-control-label::after {
+    width: calc(1.5rem - 4px);
+    height: calc(1.5rem - 4px);
+    border-radius: calc(2rem - (1.5rem / 2));
+}
+
+.custom-switch.custom-switch-md .custom-control-input:checked ~ .custom-control-label::after {
+    transform: translateX(calc(1.5rem - 0.25rem));
+}
+
+/* for lg */
+
+.custom-switch.custom-switch-lg .custom-control-label {
+    padding-left: 3rem;
+    padding-bottom: 2rem;
+}
+
+.custom-switch.custom-switch-lg .custom-control-label::before {
+    height: 2rem;
+    width: calc(3rem + 0.75rem);
+    border-radius: 4rem;
+}
+
+.custom-switch.custom-switch-lg .custom-control-label::after {
+    width: calc(2rem - 4px);
+    height: calc(2rem - 4px);
+    border-radius: calc(3rem - (2rem / 2));
+}
+
+.custom-switch.custom-switch-lg .custom-control-input:checked ~ .custom-control-label::after {
+    transform: translateX(calc(2rem - 0.25rem));
+}
+
+/* for xl */
+
+.custom-switch.custom-switch-xl .custom-control-label {
+    padding-left: 4rem;
+    padding-bottom: 2.5rem;
+}
+
+.custom-switch.custom-switch-xl .custom-control-label::before {
+    height: 2.5rem;
+    width: calc(4rem + 0.75rem);
+    border-radius: 5rem;
+}
+
+.custom-switch.custom-switch-xl .custom-control-label::after {
+    width: calc(2.5rem - 4px);
+    height: calc(2.5rem - 4px);
+    border-radius: calc(4rem - (2.5rem / 2));
+}
+
+.custom-switch.custom-switch-xl .custom-control-input:checked ~ .custom-control-label::after {
+    transform: translateX(calc(2.5rem - 0.25rem));
+}
+
+.play-button, .play-button-custom {
+    cursor: pointer;
+}
+.play-button div {
+    position: relative;
+}
+
+.play-button:not(.no-text) div, .play-button-custom:not(.no-text) div {
+    position: relative;
+}
+
+.play-button:not(.no-text) div:before, .play-button-custom:not(.no-text) div:before {
+    content: attr(data-text);
+    position: absolute;
+    padding: 7px 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+.play-button:not(.no-text) div:before {
+    background: linear-gradient(120deg, var(--purple-cuidar) 50%, var(--cyan-cuidar) 50%);
+    background-size: 220%;
+    background-position: 100%;
+    bottom: 13%;
+    left: -25px;
+    font-size: 1.5em;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    -o-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+}
+
+.play-button div:after, .play-button-custom:not(.no-play) div:after {
+    content: '\f144';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 400;
+    position: absolute;
+    color: white;
+    opacity: .5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-53%);
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    z-index: 999;
+    font-size: 6em;
+    filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.5));
+    cursor: pointer;
+}
+
+.play-button:hover > div:after, .play-button-custom:not(.no-play):hover > div:after {
+    color: var(--dancabrazil);
+    opacity: 1;
+}
+
+.instagram-images {
+    background-size: 155%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.instagram-images .overlay-inst{
+    opacity: 0;
+    transition-property: opacity,top;
+    transition-duration: 1s, 1s;
+    transition-timing-function: ease;
+    background: rgba(0,0,0,0.5);
+    transition: top 6s ease-in-out;
+    color: white;
+    font-size: .9em;
+    position: absolute;
+    top: 6%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: .7em;
+}
+
+.instagram-images:hover .overlay-inst {
+    opacity: 1;
+    top: -500%;
+    transition-property: opacity,top;
+    transition-duration: 1s, 20s;
+    transition-timing-function: ease;
+    transition-delay: 0, 1s;
+}
+
+.swiper-button-prev, .swiper-button-next{
+	color: var(--dancabrazil);
+}
+
+#scrollUp{
+    background: var(--dancabrazil);
+    right: 5%;
+    bottom: 5%;
+    color: var(--green-dancabrazil);
+    border: solid 1px var(--green-dancabrazil);
+    border-radius: 7px;
+    padding: .5em 1em;
+    opacity: .7;
+
+}
+
+
+@media (min-width: 992px){
+    .masthead {
+        height: 100vh;
+        padding: 0;
+    }
+}
+
