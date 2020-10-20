@@ -18,7 +18,7 @@
 	--blue-dancabrazil: #2f3e80;
 	--dark-green-dancabrazil: #405a49;
 }
-*{
+body{
 	font-family: 'Work Sans';
 }
 body{
@@ -35,6 +35,30 @@ body{
 
 #mainNav, #mainNav a{
     color: white;
+}
+#slide_testimonials {
+    cursor: grab;
+}
+#slide_testimonials:focus, #slide_testimonials:active {
+    cursor: grabbing;
+}
+#slide_testimonials .aspas{
+    position: relative;
+    font-family: 'Playfair Display'!important;
+    font-style: italic;
+    font-size: 2em
+}
+#slide_testimonials .owner{
+    text-transform: uppercase;
+}
+
+#slide_testimonials .swiper-pagination-bullet{
+    background: white;
+    transition: all .5s ease-in-out
+}
+
+#slide_testimonials .swiper-pagination-bullet-active{
+    transform: scale(1.5);
 }
 
 .masthead {
@@ -462,6 +486,21 @@ a.arrows_dancabrazil:last-child{
 
 }
 
+#canal {
+    background: #f6f6f6;
+    
+}
+#canal .card-group a{
+    text-decoration: none;
+    color: black;
+   
+}
+#canal .card-group a h4{
+    font-family: 'Playfair Display'!important;
+}
+#canal .card-group .date{
+    font-size: .8em;
+}
 
 @media (min-width: 992px){
     .masthead {

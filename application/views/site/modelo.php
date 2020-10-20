@@ -187,28 +187,139 @@
     			</div>
     		</div>
     	</section>
+        <?php if(isset($testimonials) && is_array($testimonials)){ ?>
     	<section id="depoimentos" class="py-4">
     		<div class="container py-3">
-    			<div class="row justify-content-center">
+    			<div id="slide_testimonials" class="swiper-container py-3">
+                    <div class="swiper-wrapper">
+                    <?php foreach ($testimonials as $key => $testimonial) { ?>
+                        <div class="swiper-slide">
+                            <div class="card border-0 bg-transparent">
+                                <div class="card-body align-items-center">
+                                    <div class="row align-items-center justify-content-center text-center">
+                                        <?php /*
+                                        <div class="col-md-4 col-4 text-center">
+                                            <?php if($testimonial['tes_image'] && is_file(set_realpath('assets/images/testimonials/'.$testimonial['tes_image']))){ ?>
+                                                <?=img(['src'=>'assets/images/testimonials/'.$testimonial['tes_image'],'class'=>'img-fluid rounded-circle','style'=>'width:150px;'])?>
+                                            <?php }else{ ?>
+                                                <?=img(['src'=>'assets/images/user.png','class'=>'img-fluid rounded-circle','style'=>'width:150px;'])?>
+                                            <?php } ?>
+                                            
+                                        </div>
+                                        */ ?>
+                                        <div class="col-md-12 text-center">
+                                            <?php if($language == 'en'){
+                                                if(!empty($testimonial['tes_testimonial_en'])){
+                                                    echo "<p class='text-center aspas'><span>".'“'."</span>".$testimonial['tes_testimonial_en']."<span>".'”'."</span></p>";
+                                                }else{
+                                                    echo "<p class='text-center aspas'><span>".'“'."</span>".$testimonial['tes_testimonial_pt_br']."<span>".'”'."</span></p>";
+                                                }
+                                                
+                                            }else{
+                                                if(!empty($testimonial['tes_testimonial_pt_br'])){
+                                                    echo "<p class='text-center aspas'><span>".'“'."</span>".$testimonial['tes_testimonial_pt_br']."<span>".'”'."</span></p>";
+                                                }else{
+                                                    echo "<p class='text-center aspas'><span>".'“'."</span>".$testimonial['tes_testimonial_en']."<span>".'”'."</span></p>";
+                                                }
+                                            }
+                                            ?>
+                                            <p class="owner"><?=$testimonial['tes_name']?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
 
-    			</div>
+                    </div>   
+                    <div class="swiper-pagination"></div>      
+                </div>
     		</div>
     	</section>
+    <?php } ?>
     	<section id="aulas" class="py-4">
     		<div class="container py-3">
     			<div class="row justify-content-center">
     				<div class="col-12">
     					<div class="content-aulas text-center">
-    						<h2 class="font-playfair font-weight-bold"><?=get_option('site_online_classes_'.$lang_bd)?></h2>
-    						<?=get_option('site_online_classes_desc_'.$lang_bd)?>
-    						<div class="text-center">
-    							 <a class="btn btn-success js-scroll-trigger btn-success-dancabrazil" href="#about"><?=get_option('button_see_classes_'.$lang_bd)?></a>
-    						</div>
+    						<h2 class="font-playfair font-weight-bold"><?=get_option('site_heading_videos_'.$lang_bd)?></h2>
+    						<?=get_option('site_heading_videos_desc_'.$lang_bd)?>
     					</div>
     				</div>
     			</div>
     		</div>
     	</section>
+        
+        <section id="canal" class="py-4">
+            <div class="container py-3">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="content-aulas text-center">
+                            <h2 class="font-playfair font-weight-bold"><?=get_option('site_channel_'.$lang_bd)?></h2>
+                            <?=get_option('site_channel_desc_'.$lang_bd)?>
+                        </div>
+                    </div>
+                </div>
+                <?php if(isset($videos) && is_array($videos)){ ?>
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+                            <div class="card-group justify-content-center">
+                                <?php foreach ($videos as $key => $video) { ?>
+                                    <div class="col-md-6">
+                                        <div class="card border-0">
+                                            <a href="<?=$video['vid_link']?>" data-fancybox="canal" class="play-button no-text">
+                                                <div>
+                                                    <?=img(['src'=>$video['vid_image'], 'class'=>'card-img-top'])?>
+                                                </div>
+                                                
+                                            </a>
+                                            <div class="card-body">
+                                                <a href="<?=$video['vid_link']?>" target="_blank">
+                                                    <h4><?=$video['vid_title_'.$lang_bd]?></h4>
+                                                    <?php if($lang_bd == 'en'){ ?>
+                                                    <p class="date"><?=strftime('%b %d, %Y')?></p>
+                                                    <?php }else{ ?>
+                                                    <p class="date"><?=strftime('%d de %b de %Y')?></p>
+                                                    <?php } ?>
+                                                    <p class="text-muted"><?=$video['vid_description_'.$lang_bd]?></p>
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>       
+                </div>
+                <?php } ?>
+            </div>
+        </section>
+        <?php if(isset($team) && is_array($team)){ ?>
+        <section id="team" class="py-4">
+            <div class="container py-3">
+                <div id="slide_team" class="swiper-container py-3">
+                    <div class="swiper-wrapper">
+                    <?php foreach ($team as $key => $equipe) { ?>
+                        <div class="swiper-slide">
+                            <div class="card border-0">
+                                <?=img(['src'=>'assets/images/team/'.$equipe['tea_image'],'class'=>'card-image rounded-circle'])?>
+                                <div class="card-img-overlay">
+                                    <h5><?=$equipe['tea_name']?></h5>
+                                    <p><?=$equipe['tea_description_'.$lang_bd]?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+
+                    </div>   
+                    <div class="swiper-pagination"></div>      
+                </div>
+            </div>
+        </section>
+    <?php } ?>
+      
 	</main>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

@@ -316,8 +316,23 @@ if($("#slide_enoturismo").length){
 if($("#slide_testimonials").length){
 	var tesSwiper = new Swiper('#slide_testimonials',{
 	    	speed: 400,
-	    	lazy: true,
 	    	slidesPerView: 1,
+	    	spaceBetween: 0,
+	    	pagination: {
+		        el: '.swiper-pagination',
+		        clickable: true,
+		    },
+		    navigation: {
+		        nextEl: '.swiper-button-next',
+		        prevEl: '.swiper-button-prev',
+		    },
+	    })
+}
+
+if($("#slide_team").length){
+	var tesSwiper = new Swiper('#slide_team',{
+	    	speed: 400,
+	    	slidesPerView: 3,
 	    	spaceBetween: 0,
 	    	pagination: {
 		        el: '.swiper-pagination',
