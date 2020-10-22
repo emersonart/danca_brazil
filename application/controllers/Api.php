@@ -49,12 +49,11 @@ class Api extends CI_Controller {
 
 		if($this->input->is_ajax_request() && $this->input->post()){
 			$this->load->model('Contacts_model','contact');
-			$this->form_validation->set_rules('con_name','E-mail','trim|required');
+			$this->form_validation->set_rules('con_name',lang('name_input'),'trim|required');
 			$this->form_validation->set_rules('con_email','E-mail','trim|required|valid_email');
-			$this->form_validation->set_rules('con_contact','Contact','trim|required');
-			$this->form_validation->set_rules('con_message','Mensagem','trim|required');
-			$this->form_validation->set_rules('con_subject','Mensagem','trim');
-			$this->form_validation->set_rules('con_cot_id','Corpo da notícia em português','trim|required|is_numeric');
+			$this->form_validation->set_rules('con_contact','Contact','trim');
+			$this->form_validation->set_rules('con_message',lang('message_input'),'trim|required');
+			$this->form_validation->set_rules('con_subject',lang('subject_input'),'trim|required');
 			if($this->form_validation->run() == FALSE){
 				if(validation_errors()){
 					$json_return = [
@@ -79,11 +78,6 @@ class Api extends CI_Controller {
 					}
 				}
 				$dados['con_message'] = nl2br($dados['con_message']);
-				if(!isset($dados['con_subject']) || $dados['con_subject'] == ''){
-					$dados['con_subject'] = $this->contact->get_type($dados['con_cot_id']);
-					$dados['con_subject'] = $dados['con_subject']['cot_type'];
-
-				}
 				
 				$dados['con_ip_address'] = $this->input->ip_address();
 				$ip_info = $this->ipdetails->init(['ip'=>$this->input->ip_address()])->scan();
@@ -107,8 +101,7 @@ class Api extends CI_Controller {
 						'email_send' => $dados['con_email'],
 						'assunto' => $dados['con_subject'],
 						'mensagem' => $dados['con_message'],
-						'ip' => $dados['con_ip_address'],
-						'telefone' => $dados['con_contact']
+						'ip' => $dados['con_ip_address']
 					];
 					if($ip_info->get_status() == 200){
 						$enviar_email['cidade'] = $ip_info->get_city();

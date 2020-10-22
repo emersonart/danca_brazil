@@ -9,7 +9,7 @@ function show_ajax_modal(message,cl){
 	send_modal.find('h2 i').removeClass('fa-check text-success text-danger fa-times');
 	send_modal.find('h4').text('');
 	send_modal.find('h2 i').addClass(cl);
-	send_modal.find('h4').text(message);
+	send_modal.find('h4').html(message);
 	send_modal.modal('show');
 	console.log('asd');
 	return true;
@@ -330,10 +330,12 @@ if($("#slide_testimonials").length){
 }
 
 if($("#slide_team").length){
-	var tesSwiper = new Swiper('#slide_team',{
+	var teamSwiper = new Swiper('#slide_team',{
+			loop: true,
 	    	speed: 400,
+	    	autoplay:true,
 	    	slidesPerView: 3,
-	    	spaceBetween: 0,
+	    	spaceBetween: 5,
 	    	pagination: {
 		        el: '.swiper-pagination',
 		        clickable: true,
@@ -341,6 +343,18 @@ if($("#slide_team").length){
 		    navigation: {
 		        nextEl: '.swiper-button-next',
 		        prevEl: '.swiper-button-prev',
+		    },
+		    centeredSlides: true,
+		    breakpoints: {
+		        100: {
+		          	slidesPerView: 1,
+		        },
+		        560: {
+		          	slidesPerView: 2,
+		        },
+		        768: {
+		          	slidesPerView: 3,
+		        }
 		    },
 	    })
 }

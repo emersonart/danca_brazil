@@ -52,12 +52,12 @@ body{
     text-transform: uppercase;
 }
 
-#slide_testimonials .swiper-pagination-bullet{
+#slide_testimonials .swiper-pagination-bullet, #slide_team .swiper-pagination-bullet{
     background: white;
     transition: all .5s ease-in-out
 }
 
-#slide_testimonials .swiper-pagination-bullet-active{
+#slide_testimonials .swiper-pagination-bullet-active, #slide_team .swiper-pagination-bullet-active{
     transform: scale(1.5);
 }
 
@@ -486,7 +486,7 @@ a.arrows_dancabrazil:last-child{
 
 }
 
-#canal {
+#canal, #contato {
     background: #f6f6f6;
     
 }
@@ -501,7 +501,117 @@ a.arrows_dancabrazil:last-child{
 #canal .card-group .date{
     font-size: .8em;
 }
+#team{
+    background: url('../images/bg_depoimentos.png');
+    background-size: cover;
+    background-position: center center;
+    color:white!important;
+}
+#slide_team .swiper-pagination{
+    position: relative;
+    margin-top: 30px;
+}
+#slide_team .content_team{
+    width: 300px;
+    height: 300px;
+    background-color: rgba(0,0,0,0.5);
+    background-image: url('../assets/images/user.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    overflow: hidden;
+    background-size: cover;
+    position: relative;
+    margin-left: auto;
+    display: flex;
+    margin-right: auto;
+    
+}
 
+#slide_team .content_team:hover .content_desc_team, #slide_team .swiper-slide-active .content_desc_team{
+    opacity: 1;
+    transition: all .5s ease-in-out;
+}
+
+#slide_team .content_desc_team{
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    transition: all .5s ease-in-out;
+    z-index: 1;
+    flex-direction: column;
+    border-radius: 100%;
+    overflow: hidden;
+    padding: .5em 1em;
+}
+
+#slide_team .content_desc_team h5{
+    font-family: 'Playfair Display'!important;
+}
+
+#sldie_team .content_desc_team a{
+    color:white;
+}
+
+#slide_team .card .card-img-overlay{
+    opacity: 0;
+    transition: all .5s ease-in-out;
+    color: white;
+}
+#slide_team .card .card-img-overlay a{
+    color:white;
+    text-decoration: none;
+}
+#slide_team .card .card-img-overlay h5{
+    font-family: 'Playfair Display'!important;
+
+}
+#slide_team .card > .cont-img-over:before{
+    position: relative;
+}
+#slide_team .content_team:after{
+    content: '';
+    left:0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    position: absolute;
+    background: transparent;
+    border-radius: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all .5s ease-in-out;
+}
+#slide_team .content_team:hover:after, #slide_team .swiper-slide-active .content_team:after{
+    background: rgba(0,0,0,.5);
+    transition: all .5s ease-in-out;
+}
+#slide_team .card:hover .card-img-overlay{
+    opacity: 1;
+    transition: all .5s ease-in-out;
+}
+#contato input{
+    height: calc(2em + .95rem + 2px);
+}
+#contato input, #contato textarea, #contato button{
+    border-radius: 0;
+    border: 0;
+}
+#contato input:focus, #contato textarea:focus, 
+#contato input.focus, #contato textarea.focus,
+#contato input:active, #contato textarea:active,
+#contato input.active, #contato textarea.active{
+    box-shadow: 0 0 0 0.2rem rgba(0,0,0,.25);
+}
+#contato button{
+    margin-top: 1.5em;
+    text-transform: uppercase;
+    padding: 1em 2em;
+}
 @media (min-width: 992px){
     .masthead {
         height: 100vh;

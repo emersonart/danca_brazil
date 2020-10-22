@@ -35,7 +35,7 @@
 		</script>
 
 	</head>
-<body>
+<body data-baseurl="<?=base_url()?>" data-csrf="<?=$this->security->get_csrf_token_name()?>" data-lang="<?=get_language()?>">
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="#page-top"><?=img('assets/images/logo.png',FALSE,['class'=>'navbar-brand img-fluid'])?></a>
@@ -298,18 +298,18 @@
         </section>
         <?php if(isset($team) && is_array($team)){ ?>
         <section id="team" class="py-4">
-            <div class="container py-3">
+            <div class="container pt-3 pb-1">
                 <div id="slide_team" class="swiper-container py-3">
                     <div class="swiper-wrapper">
                     <?php foreach ($team as $key => $equipe) { ?>
                         <div class="swiper-slide">
-                            <div class="card border-0">
-                                <?=img(['src'=>'assets/images/team/'.$equipe['tea_image'],'class'=>'card-image rounded-circle'])?>
-                                <div class="card-img-overlay">
+                            <div class="content_team" style="background-image: url('/assets/images/team/<?=$equipe['tea_image'] ? $equipe['tea_image'] : 'user.png'?>')">
+                                <div class="content_desc_team">
                                     <h5><?=$equipe['tea_name']?></h5>
-                                    <p><?=$equipe['tea_description_'.$lang_bd]?></p>
+                                    <?=$equipe['tea_description_'.$lang_bd]?>
                                 </div>
                             </div>
+                            
                         </div>
                     <?php } ?>
 
@@ -319,15 +319,100 @@
             </div>
         </section>
     <?php } ?>
+    <section id="contato" class="py-4">
+        <div class="container py-3">
+            <div class="row justify-content-between">
+                <div class="col-md-5">
+                    <h2><?=get_option('site_heading_contact_'.$lang_bd)?>:</h2>
+                    <p class="text-muted">
+                        <?=get_option('site_desc_contact_'.$lang_bd)?>
+                    </p>
+                    <address>
+                    <?php if(get_option('site_address') != ''){ ?>
+                        <p>
+                            <strong><?=lang('address')?>:</strong> <span class="text-muted"><?=get_option('site_address')?></span>
+                        </p>
+                    <?php } ?>
+                    <?php if(get_option('site_phone') != ''){ ?>
+                        <p>
+                            <strong><?=lang('phone')?>:</strong> <span class="text-muted"><?=get_option('site_phone')?></span>
+                        </p>
+                    <?php } ?>
+                    <?php if(get_option('site_email') != ''){ ?>
+                        <p>
+                            <strong>E-mail:</strong> <span class="text-muted"><a class="text-muted" href="mailto:<?=get_option('site_email')?>"><?=get_option('site_email')?></a></span>
+                        </p>
+                    <?php } ?>
+                    <?php if(get_option('site_fax') != ''){ ?>
+                        <p>
+                            <strong>Fax:</strong> <span class="text-muted"><?=get_option('site_fax')?></span>
+                        </p>
+                    <?php } ?>
+                    </address>
+                </div>
+                <div class="col-md-7">
+                    <?=form_open(get_language().'/api/contact',['id'=>"form_contact_all","autocomplete"=>"off","class"=>"ajax_request"]);?>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="has-float-label">
+                                        <input type="text" autocomplete="off" class="form-control" name="con_name" id="con_name" placeholder="<?=lang('name_input')?>" required>
+                                        <span for="con_name"><?=lang('name_input')?></span>
+                                    </label>
+                                </div>      
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="has-float-label">
+                                        <input type="email" autocomplete="off" class="form-control" name="con_email" id="con_email" placeholder="E-mail" required>
+                                        <span for="con_name">E-mail</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="has-float-label">
+                                        <input type="text" autocomplete="off" class="form-control" name="con_subject" id="con_subject" placeholder="<?=lang('subject_input')?>" required>
+                                        <span for="con_subject"><?=lang('subject_input')?></span>
+                                    </label>
+                                </div> 
+                            </div>
+                             
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="has-float-label">
+                                    <textarea autocomplete="off" class="form-control" name="con_message" id="con_message" placeholder="<?=lang('message_input')?>" rows="5" required></textarea> 
+                                    <span for="con_message"><?=lang('message_input')?></span>
+                                </label>
+                            </div>
+                            
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <button class="btn btn-dark btn-dark-dancabrazil" type="submit"><?=lang('send_button')?></button>
+                            </div>
+                        </div>
+                    <?=form_close();?>
+
+                </div>
+            </div>
+        </div>
+    </section>
       
 	</main>
 
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="<?=base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
-		<script type="text/javascript" src="<?=base_url('assets/vendor/swiper/swiper-bundle.js')?>"></script>
-		<script type="text/javascript" src="<?=base_url('assets/vendor/scrollUp/jquery.scrollUp.js')?>"></script>
-		<script type="text/javascript" src="<?=base_url('assets/vendor/fancybox/jquery.fancybox.js')?>"></script>
-		<script type="text/javascript" src="<?=base_url('assets/js/active.js')?>"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="<?=base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
+	<script type="text/javascript" src="<?=base_url('assets/vendor/swiper/swiper-bundle.js')?>"></script>
+	<script type="text/javascript" src="<?=base_url('assets/vendor/scrollUp/jquery.scrollUp.js')?>"></script>
+	<script type="text/javascript" src="<?=base_url('assets/vendor/fancybox/jquery.fancybox.js')?>"></script>
+	<script type="text/javascript" src="<?=base_url('assets/js/active.js')?>"></script>
+    <?php $this->load->view('site/__modals/send_ajax');?>
+
 </body>
 </html>

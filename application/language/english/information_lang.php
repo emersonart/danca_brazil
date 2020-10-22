@@ -46,13 +46,14 @@ $lang['not_send_contact'] = "Message cannot be sent!";
 
 
 //forms
-$lang['send_button'] = "Send";
+$lang['send_button'] = "Send Message";
 $lang['save_button'] = "Save";
-$lang['name_input'] = 'Name';
-$lang['email_input'] = 'E-mail';
+$lang['name_input'] = 'Your name';
+$lang['subject_input'] = 'Yout title';
+$lang['email_input'] = 'Yout Email';
 $lang['cellphone_input'] = "Cell phone";
 $lang['telephone_input'] = "Telephone";
-$lang['message_input'] = "Message";
+$lang['message_input'] = "Your comment";
 
 $lang['enoturismo'] = 'Wine Tourism';
 
@@ -91,3 +92,10 @@ $lang['next_page'] = 'Next';
 $lang['previous_page'] = 'Previous';
 
 $lang['enquire_now'] = 'Enquire now';
+
+
+
+
+
+$lang['address'] = 'Address';
+$lang['phone'] = 'Phone';

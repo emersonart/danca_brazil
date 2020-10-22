@@ -46,13 +46,14 @@ $lang['not_send_contact'] = "Não foi possível enviar seu contato!";
 
 
 //forms
-$lang['send_button'] = "Enviar";
+$lang['send_button'] = "Enviar mensagem";
 $lang['save_button'] = "Salvar";
 $lang['name_input'] = 'Nome';
+$lang['subject_input'] = 'Assunto';
 $lang['email_input'] = 'E-mail';
 $lang['cellphone_input'] = "Celular";
 $lang['telephone_input'] = "Telefone";
-$lang['message_input'] = "Mensagem";
+$lang['message_input'] = "Seu comentário";
 
 
 $lang['button_search'] = 'Procurar';
@@ -61,3 +62,9 @@ $lang['next_page'] = 'Próximo';
 $lang['previous_page'] = 'Anterior';
 
 $lang['enquire_now'] = 'Faça sua reserva';
+
+
+
+
+$lang['address'] = 'Endereço';
+$lang['phone'] = 'Telefone';
