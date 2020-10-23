@@ -88,6 +88,8 @@ class Site extends MY_Controller {
 		$this->load->model('Testimonials_model','testimonials');
 		$this->load->model('Videos_model','videos');
 		$this->load->model('Team_model','team');
+		$this->load->model('Socialmedias_model','social');
+		$this->load->model('Services_model','service');
 		$lang = str_replace('-','_', get_language());
 		$menu = $this->menus->get_all_by_type('site');
 		if(ENVIRONMENT == 'development'){
@@ -133,8 +135,10 @@ class Site extends MY_Controller {
 			'testimonials' => $this->testimonials->get(['where'=>['tes_show'=>1],'order'=>['tes_id'=>'DESC']]),
 			'language' => $lang,
 			'videos' => $videos,
-			'team' => $this->team->get(['where'=>['tea_show'=>1],'order'=>['tea_id'=>'DESC']])
+			'team' => $this->team->get(['where'=>['tea_show'=>1],'order'=>['tea_id'=>'DESC']]),
+			'servicos_adicionais' => $this->service->get_all()
 		];
+		$data['social_medias'] = $this->social->get();
 		//load_template($data,'site/modelo','site');
 		$this->load->view('site/modelo',$data);
 	}

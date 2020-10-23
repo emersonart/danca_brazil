@@ -99,3 +99,8 @@ $lang['enquire_now'] = 'Enquire now';
 
 $lang['address'] = 'Address';
 $lang['phone'] = 'Phone';
+
+
+$lang['copyright'] = 'Created by <a href="http://azevedostudio.com.br">Azevedo Estudio</a> and Developed by <a href="https://www.facebook.com/ethernalcreativeid">Ethernal Creative Identities</a>';
+
+$lang['servicos_adicionais'] = 'Additional services';

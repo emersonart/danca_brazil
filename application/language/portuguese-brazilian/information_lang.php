@@ -68,3 +68,7 @@ $lang['enquire_now'] = 'Faça sua reserva';
 
 $lang['address'] = 'Endereço';
 $lang['phone'] = 'Telefone';
+
+$lang['copyright'] = 'Criado por <a href="http://azevedostudio.com.br">Azevedo Estudio</a> e Desenvolvido por <a href="https://www.facebook.com/ethernalcreativeid">Ethernal Creative Identities</a>';
+
+$lang['servicos_adicionais'] = 'Serviços adicionais';

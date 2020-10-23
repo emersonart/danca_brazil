@@ -511,6 +511,13 @@ a.arrows_dancabrazil:last-child{
     position: relative;
     margin-top: 30px;
 }
+#slide_team a{
+    text-decoration: none;
+}
+#slide_team a:hover .content_team:after{
+    opacity: 1;
+    background: rgba(0,0,0,.7);
+}
 #slide_team .content_team{
     width: 300px;
     height: 300px;
@@ -568,7 +575,7 @@ a.arrows_dancabrazil:last-child{
 }
 #slide_team .card .card-img-overlay h5{
     font-family: 'Playfair Display'!important;
-
+    font-weight: bold;
 }
 #slide_team .card > .cont-img-over:before{
     position: relative;
@@ -607,10 +614,38 @@ a.arrows_dancabrazil:last-child{
 #contato input.active, #contato textarea.active{
     box-shadow: 0 0 0 0.2rem rgba(0,0,0,.25);
 }
+#contato h1, #contato h2, #contato h3, #contato h4{
+    font-family: 'Playfair Display'!important;
+    font-weight: bold;
+}
 #contato button{
     margin-top: 1.5em;
     text-transform: uppercase;
     padding: 1em 2em;
+}
+
+#footer_site{
+    background: black;
+    color:white;
+}
+#footer_site a{
+    color: white;
+    text-decoration: none;
+}
+#footer_site hr{
+    border-color:white;
+}
+.footer-divider{
+    width: 100%;
+    background: white;
+    height: 1px;
+    border:0;
+    margin: .3em 0;
+}
+
+footer .copyright{
+    text-align: center;
+
 }
 @media (min-width: 992px){
     .masthead {
