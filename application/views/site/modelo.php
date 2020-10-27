@@ -24,22 +24,23 @@
 		<?=link_tag('assets/vendor/swiper/swiper-bundle.css')?>
 		<?=link_tag('assets/vendor/fancybox/jquery.fancybox.css')?>
 		<?=link_tag('assets/css/style.css?t='.uniqid(rand(0,50).md5(strtotime(date('Y-m-d-H-i-s')))))?>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<?php /*<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177863655-1"></script>
-		<script>
+		 <script>
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
 
 		  gtag('config', 'UA-177863655-1');
 		</script>
+        */ ?>
 
 	</head>
 <body data-baseurl="<?=base_url()?>" data-csrf="<?=$this->security->get_csrf_token_name()?>" data-lang="<?=get_language()?>">
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="#page-top"><?=img('assets/images/logo.png',FALSE,['class'=>'navbar-brand img-fluid'])?></a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler navbar-toggler-right text-white" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -52,7 +53,7 @@
             <div class="mx-auto text-center">
             	<small><?=get_option('site_pre_heading_'.$lang_bd)?></small>
                 <h1 class="mx-auto "><?=get_option('site_heading_'.$lang_bd)?></h1>
-                <a class="btn btn-success js-scroll-trigger btn-success-dancabrazil" href="#about"><?=get_option('button_pre_matricula_'.$lang_bd)?></a>
+                <a class="btn btn-success js-scroll-trigger  btn-success-dancabrazil" href="#about"><?=get_option('button_pre_matricula_'.$lang_bd)?></a>
                 <div class="position-absolute container-scroll-down">
 	            	<a class="js-scroll-trigger btn-scroll-down" href="#compartilhando-amor"><i class="fa fa-chevron-down"></i></a>
 	            </div>
@@ -78,48 +79,33 @@
     	<section id="horarios" class="py-4 text-white">
     		<div class="container py-3">
     			<div class="card-group justify-content-center">
+                <?php if(isset($agenda) && is_array($agenda)){ ?>
+                    <?php foreach ($agenda as $key => $ag) { ?>
+                       
     				<div class="col-md-4 mb-4">
     					<div class="card h-100 border-0 bg-transparent">
     						<div class="card-body">
-    							<h4>texto</h4>
+
+    							<h4><?=$ag['sch_day_'.$lang_bd]?> - <?=$ag['sch_hour']?></h4>
+                            <?php if(isset($ag['cursos']) && is_array($ag['cursos'])){ ?>
     							<ul class="list-unstyled">
-    								<li>asdas</li>
+                                    <?php foreach($ag['cursos'] as $ln => $curso){?>
+                                        <li><?=$curso['cur_title_'.$lang_bd]?></li>
+                                    <?php } ?>
+                                
+    								
     							</ul>
+                            <?php }?>
     						</div>
     						<div class="card-footer border-0 bg-transparent">
-	    						<a href="#" class="btn btn-danger btn-danger-dancabrazil text-uppercase"><?=lang('know_more')?></a>
+	    						<a href="<?=base_url('agenda/'.$ag['sch_link'])?>" class="btn btn-danger btn-danger-dancabrazil text-uppercase"><?=lang('know_more')?></a>
 	    					</div>
     					</div>
     					
     				</div>
-    				<div class="col-md-4 mb-4">
-    					<div class="card h-100 border-0 bg-transparent">
-    						<div class="card-body">
-    							<h4>texto</h4>
-    							<ul class="list-unstyled">
-    								<li>asdas</li>
-    							</ul>
-    						</div>
-    						<div class="card-footer border-0 bg-transparent">
-	    						<a href="#" class="btn btn-danger btn-danger-dancabrazil text-uppercase"><?=lang('know_more')?></a>
-	    					</div>
-    					</div>
-    					
-    				</div>
-    				<div class="col-md-4 mb-4">
-    					<div class="card h-100 border-0 bg-transparent">
-    						<div class="card-body">
-    							<h4>texto</h4>
-    							<ul class="list-unstyled">
-    								<li>asdas</li>
-    							</ul>
-    						</div>
-    						<div class="card-footer border-0 bg-transparent">
-	    						<a href="#" class="btn btn-danger btn-danger-dancabrazil text-uppercase"><?=lang('know_more')?></a>
-	    					</div>
-    					</div>
-    					
-    				</div>
+                    <?php } ?>
+                <?php } ?>
+
     			</div>
     		</div>
     	</section>
@@ -149,7 +135,7 @@
 
 							<div class="card p-0 bg-transparent border-0 ">
 								<?=img(['src'=>'assets/images/cards/image_3.png','class'=>'card-img'])?>
-						    	<div class="card-img-overlay p-4 ">
+						    	<div class="card-img-overlay p-4 d-flex flex-column align-items-center justify-content-center ">
 						    		<h4 class="text-center font-playfair font-weight-bold mb-3"><?=lang('servicos_adicionais')?></h4>
                                     <?php
 
@@ -168,13 +154,15 @@
                                     <?php
                                         }
                                      ?>
+                                    <a href="<?=get_option('site_btn_link_contrate')?>" class="btn btn-success btn-success-dancabrazil"><?=lang('btn_contrate')?></a>
 						    	</div>
 						    
 							</div>
 							<div class="card p-0 bg-transparent border-0">
 						    	<?=img(['src'=>'assets/images/cards/image_7.png','class'=>'card-img'])?>
-						    	<div class="card-img-overlay bg-overlay">
-						    		asd
+						    	<div class="card-img-overlay bg-overlay d-flex flex-column align-items-center justify-content-center ">
+						    		<h4 class="text-center font-playfair font-weight-bold mb-3"><?=lang('transform_event')?></h4>
+                                    <a href="<?=get_option('site_btn_link_orcamento')?>" class="btn btn-success btn-success-dancabrazil"><?=lang('btn_orca')?></a>
 						    	</div>
 							</div>
 							<div class="card p-0 bg-transparent border-0">
@@ -259,8 +247,14 @@
     			<div class="row justify-content-center">
     				<div class="col-12">
     					<div class="content-aulas text-center">
-    						<h2 class="font-playfair font-weight-bold"><?=get_option('site_heading_videos_'.$lang_bd)?></h2>
-    						<?=get_option('site_heading_videos_desc_'.$lang_bd)?>
+    						<h2 class="font-playfair font-weight-bold"><?=get_option('site_online_classes_'.$lang_bd)?></h2>
+                            <div class="text-muted"><?=get_option('site_online_classes_desc_'.$lang_bd)?></div>
+    						<div class="text-muted">
+                                <?=lang('classes_mais_informacoes')?> <a href="mailto:<?=get_option('site_email')?>" class="text-muted"><?=get_option('site_email')?></a>
+                            </div>
+                            <div class="text-center mt-4">
+                                <a href="<?=get_option('site_btn_link_classes')?>" class="btn btn-success btn-success-dancabrazil"><?=get_option('button_see_classes_'.$lang_bd)?></a>
+                            </div>
     					</div>
     				</div>
     			</div>
@@ -270,10 +264,10 @@
         <section id="canal" class="py-4">
             <div class="container py-3">
                 <div class="row justify-content-center">
-                    <div class="col-12">
+                    <div class="col-12 mb-5">
                         <div class="content-aulas text-center">
-                            <h2 class="font-playfair font-weight-bold"><?=get_option('site_channel_'.$lang_bd)?></h2>
-                            <?=get_option('site_channel_desc_'.$lang_bd)?>
+                            <h2 class="font-playfair font-weight-bold"><?=get_option('site_heading_videos_'.$lang_bd)?></h2>
+                            <?=get_option('site_heading_videos_desc_'.$lang_bd)?>
                         </div>
                     </div>
                 </div>

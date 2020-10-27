@@ -72,3 +72,11 @@ $lang['phone'] = 'Telefone';
 $lang['copyright'] = 'Criado por <a href="http://azevedostudio.com.br">Azevedo Estudio</a> e Desenvolvido por <a href="https://www.facebook.com/ethernalcreativeid">Ethernal Creative Identities</a>';
 
 $lang['servicos_adicionais'] = 'Serviços adicionais';
+
+$lang['transform_event'] = 'Transforme o seu evento em uma festa brasileira!';
+
+$lang['btn_contrate'] = "CONTRATE AGORA";
+
+$lang['btn_orca'] = "FAÇA SEU ORÇAMENTO";
+
+$lang['classes_mais_informacoes'] = "Para mais informações contacte-nos: ";

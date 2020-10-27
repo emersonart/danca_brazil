@@ -2,6 +2,43 @@ var base_url = document.querySelector('body').dataset.baseurl + document.querySe
 var base_url_no = document.querySelector('body').dataset.baseurl;
 var csrf_name = document.querySelector('body').dataset.csrf;
 
+$(window).scroll(function() { 
+    var scroll = $(window).scrollTop();
+    if (scroll > 10) {
+        $('#mainNav').addClass('nav-active');
+    } else {
+        $('#mainNav').removeClass('nav-active');
+    }
+});
+
+$('.js-scroll-trigger[href^="#"]').on('click', function(e) {
+	e.preventDefault();
+	var id = $(this).attr('href'),
+	targetOffset = $(id).offset().top;
+
+	window.history.replaceState("object or string", "Title", id);
+
+	$('html, body').animate({ 
+		scrollTop: targetOffset - 40
+	}, 600);
+});
+if($('[data-fancybox]').length){
+	$('[data-fancybox]').fancybox({
+	    youtube : {
+	        controls : 0,
+	        showinfo : 0
+	    },
+	    vimeo : {
+	        color : '5e8046'
+	    },
+	    iframe: {
+	    	preload: false,
+	    	css : {
+	            'max-width' : '80%'
+	        }
+	    }
+	});
+}
 
 
 function show_ajax_modal(message,cl){

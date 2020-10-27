@@ -55,22 +55,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="<?=set_active('blog')?>">
-            <a href="<?=base_url('painel/blog')?>">
+          <li class="<?=set_active('agenda')?>">
+            <a href="<?=base_url('painel/agenda')?>">
               <i class="nc-icon nc-paper"></i>
-              <p>Blog</p>
+              <p>Agenda</p>
             </a>
           </li>
-          <li class="<?=set_active('tags')?>">
-            <a href="<?=base_url('painel/tags')?>">
+          <li class="<?=set_active('cursos')?>">
+            <a href="<?=base_url('painel/cursos')?>">
               <i class="nc-icon nc-bookmark-2"></i>
-              <p>Tags</p>
+              <p>Cursos</p>
             </a>
           </li>
-          <li class="<?=set_active('painel/newsletters')?>">
-            <a href="<?=base_url('painel/newsletters')?>" >
+           <li class="<?=set_active('painel/videos')?>">
+            <a href="<?=base_url('painel/videos')?>" >
               <i class="nc-icon nc-email-85"></i>
-              <p>Newsletters</p>
+              <p>Vídeos</p>
+            </a>
+          </li>
+          <li class="<?=set_active('painel/equipe')?>">
+            <a href="<?=base_url('painel/equipe')?>" >
+              <i class="nc-icon nc-email-85"></i>
+              <p>Equipe</p>
             </a>
           </li>
           <li class="<?=set_active('depoimentos')?>">

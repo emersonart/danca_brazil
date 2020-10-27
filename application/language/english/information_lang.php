@@ -104,3 +104,11 @@ $lang['phone'] = 'Phone';
 $lang['copyright'] = 'Created by <a href="http://azevedostudio.com.br">Azevedo Estudio</a> and Developed by <a href="https://www.facebook.com/ethernalcreativeid">Ethernal Creative Identities</a>';
 
 $lang['servicos_adicionais'] = 'Additional services';
+
+$lang['transform_event'] = 'Turn your event into a Brazilian party!';
+
+$lang['btn_contrate'] = "HIRE NOW";
+
+$lang['btn_orca'] = "MAKE YOUR BUDGET";
+
+$lang['classes_mais_informacoes'] = "For more information contact us:";

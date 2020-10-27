@@ -77,7 +77,7 @@ $route['blog/(:num)/(:num)/(:any)'] = 'blog/ver/$3/$1/$2';
 $route['pt-br/api/(.*)'] = 'api/$1';
 $route['en/api/(.*)'] = 'api/$1';
 //ADM
-$route['painel'] = 'painel/blog';
+$route['painel'] = 'painel/agenda';
 $route['login'] = 'painel/users/login';
 $route['painel/login'] = 'painel/users/login';
 $route['painel/sair'] = 'painel/users/sair';

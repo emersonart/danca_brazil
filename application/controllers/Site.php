@@ -90,6 +90,7 @@ class Site extends MY_Controller {
 		$this->load->model('Team_model','team');
 		$this->load->model('Socialmedias_model','social');
 		$this->load->model('Services_model','service');
+		$this->load->model('Schedules_model','agenda');
 		$lang = str_replace('-','_', get_language());
 		$menu = $this->menus->get_all_by_type('site');
 		if(ENVIRONMENT == 'development'){
@@ -128,6 +129,7 @@ class Site extends MY_Controller {
                 $videos[$key]['vid_image'] = $imagem;
 			}
 		}
+		$agenda = $this->agenda->get_all();
 		$data = [
 			'lang_bd' => $lang,
 			'title' => 'site',
@@ -136,7 +138,8 @@ class Site extends MY_Controller {
 			'language' => $lang,
 			'videos' => $videos,
 			'team' => $this->team->get(['where'=>['tea_show'=>1],'order'=>['tea_id'=>'DESC']]),
-			'servicos_adicionais' => $this->service->get_all()
+			'servicos_adicionais' => $this->service->get_all(),
+			'agenda' => $agenda
 		];
 		$data['social_medias'] = $this->social->get();
 		//load_template($data,'site/modelo','site');

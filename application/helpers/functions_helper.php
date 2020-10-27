@@ -190,9 +190,20 @@ if(!function_exists('show_menu')){
 				if(strpos($menu['men_link'],"://") !== FALSE){
 					$return .= $menu['men_link'];
 				}else{
-					$return .= base_url(get_language()."/".$menu['men_link']);
+					if(strpos($menu['men_link'],"#") === 0){
+						$return .= $menu['men_link'];
+					}else{
+						$return .= base_url(get_language()."/".$menu['men_link']);
+					}
+					
 				}
-				$return .= '" class="nav-link" ';
+
+				if(strpos($menu['men_link'],"#") === 0){
+					$return .= '" class="nav-link js-scroll-trigger" ';
+				}else{
+					$return .= '" class="nav-link" ';
+				}
+				
 				if($menu['men_target']){
 					$return .= 'target="'.$menu['men_target'].'"';
 				}
