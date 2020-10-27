@@ -2,6 +2,43 @@ var base_url = document.querySelector('body').dataset.baseurl + document.querySe
 var base_url_no = document.querySelector('body').dataset.baseurl;
 var csrf_name = document.querySelector('body').dataset.csrf;
 
+$(window).scroll(function() { 
+    var scroll = $(window).scrollTop();
+    if (scroll > 10) {
+        $('#mainNav').addClass('nav-active');
+    } else {
+        $('#mainNav').removeClass('nav-active');
+    }
+});
+
+$('.js-scroll-trigger[href^="#"]').on('click', function(e) {
+	e.preventDefault();
+	var id = $(this).attr('href'),
+	targetOffset = $(id).offset().top;
+
+	window.history.replaceState("object or string", "Title", id);
+
+	$('html, body').animate({ 
+		scrollTop: targetOffset - 40
+	}, 600);
+});
+if($('[data-fancybox]').length){
+	$('[data-fancybox]').fancybox({
+	    youtube : {
+	        controls : 0,
+	        showinfo : 0
+	    },
+	    vimeo : {
+	        color : '5e8046'
+	    },
+	    iframe: {
+	    	preload: false,
+	    	css : {
+	            'max-width' : '80%'
+	        }
+	    }
+	});
+}
 
 
 function show_ajax_modal(message,cl){
@@ -9,7 +46,7 @@ function show_ajax_modal(message,cl){
 	send_modal.find('h2 i').removeClass('fa-check text-success text-danger fa-times');
 	send_modal.find('h4').text('');
 	send_modal.find('h2 i').addClass(cl);
-	send_modal.find('h4').text(message);
+	send_modal.find('h4').html(message);
 	send_modal.modal('show');
 	console.log('asd');
 	return true;
@@ -316,7 +353,6 @@ if($("#slide_enoturismo").length){
 if($("#slide_testimonials").length){
 	var tesSwiper = new Swiper('#slide_testimonials',{
 	    	speed: 400,
-	    	lazy: true,
 	    	slidesPerView: 1,
 	    	spaceBetween: 0,
 	    	pagination: {
@@ -326,6 +362,36 @@ if($("#slide_testimonials").length){
 		    navigation: {
 		        nextEl: '.swiper-button-next',
 		        prevEl: '.swiper-button-prev',
+		    },
+	    })
+}
+
+if($("#slide_team").length){
+	var teamSwiper = new Swiper('#slide_team',{
+			loop: true,
+	    	speed: 400,
+	    	autoplay:true,
+	    	slidesPerView: 3,
+	    	spaceBetween: 5,
+	    	pagination: {
+		        el: '.swiper-pagination',
+		        clickable: true,
+		    },
+		    navigation: {
+		        nextEl: '.swiper-button-next',
+		        prevEl: '.swiper-button-prev',
+		    },
+		    centeredSlides: true,
+		    breakpoints: {
+		        100: {
+		          	slidesPerView: 1,
+		        },
+		        560: {
+		          	slidesPerView: 2,
+		        },
+		        768: {
+		          	slidesPerView: 3,
+		        }
 		    },
 	    })
 }

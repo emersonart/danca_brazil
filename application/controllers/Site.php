@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Site extends CI_Controller {
+class Site extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->library("pagination");
@@ -85,15 +85,63 @@ class Site extends CI_Controller {
 	}
 
 	public function index($param = ''){
-
+		$this->load->model('Testimonials_model','testimonials');
+		$this->load->model('Videos_model','videos');
+		$this->load->model('Team_model','team');
+		$this->load->model('Socialmedias_model','social');
+		$this->load->model('Services_model','service');
+		$this->load->model('Schedules_model','agenda');
 		$lang = str_replace('-','_', get_language());
 		$menu = $this->menus->get_all_by_type('site');
-		clear_cch();
+		if(ENVIRONMENT == 'development'){
+			clear_cch();
+		}
+		$videos = $this->videos->get(['where'=>['vid_show'=>1]]);
+		if($videos){
+			foreach ($videos as $key => $video) {
+
+                if(is_file(set_realpath('/assets/images/videos/').$video['vid_image'])){
+                    $imagem = 'assets/images/videos/'.$video['vid_image'];
+                }else{
+                    $imagem = 'assets/images/videos/no_video.jpg';
+                    if(strpos($video['vid_link'],'youtu.be') !== false){
+                        $imagem = 'https://i.ytimg.com/vi/'.explode('youtu.be/',$video['vid_link'])[1].'/mqdefault.jpg';
+                    }else{
+                        $yt = explode('?',$video['vid_link']);
+                        if(strpos($video['vid_link'],'youtube') !== false && isset($yt[1])){
+
+                            $q = explode('&',$yt[1]);
+                            $code = [];
+                            foreach ($q as $key => $value) {
+                                $code_e = explode('=',$value);
+                                $code[$code_e[0]] = $code_e[1];
+                            }
+                            if(isset($code['v'])){
+                                $imagem = 'https://i.ytimg.com/vi/'.$code['v'].'/mqdefault.jpg';
+                            }
+                            
+                            
+                        }
+                    }
+                    
+                    
+                }
+                $videos[$key]['vid_image'] = $imagem;
+			}
+		}
+		$agenda = $this->agenda->get_all();
 		$data = [
 			'lang_bd' => $lang,
 			'title' => 'site',
-			'menus' => $menu
+			'menus' => $menu,
+			'testimonials' => $this->testimonials->get(['where'=>['tes_show'=>1],'order'=>['tes_id'=>'DESC']]),
+			'language' => $lang,
+			'videos' => $videos,
+			'team' => $this->team->get(['where'=>['tea_show'=>1],'order'=>['tea_id'=>'DESC']]),
+			'servicos_adicionais' => $this->service->get_all(),
+			'agenda' => $agenda
 		];
+		$data['social_medias'] = $this->social->get();
 		//load_template($data,'site/modelo','site');
 		$this->load->view('site/modelo',$data);
 	}

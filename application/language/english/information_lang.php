@@ -46,13 +46,14 @@ $lang['not_send_contact'] = "Message cannot be sent!";
 
 
 //forms
-$lang['send_button'] = "Send";
+$lang['send_button'] = "Send Message";
 $lang['save_button'] = "Save";
-$lang['name_input'] = 'Name';
-$lang['email_input'] = 'E-mail';
+$lang['name_input'] = 'Your name';
+$lang['subject_input'] = 'Yout title';
+$lang['email_input'] = 'Yout Email';
 $lang['cellphone_input'] = "Cell phone";
 $lang['telephone_input'] = "Telephone";
-$lang['message_input'] = "Message";
+$lang['message_input'] = "Your comment";
 
 $lang['enoturismo'] = 'Wine Tourism';
 
@@ -91,3 +92,23 @@ $lang['next_page'] = 'Next';
 $lang['previous_page'] = 'Previous';
 
 $lang['enquire_now'] = 'Enquire now';
+
+
+
+
+
+$lang['address'] = 'Address';
+$lang['phone'] = 'Phone';
+
+
+$lang['copyright'] = 'Created by <a href="http://azevedostudio.com.br">Azevedo Estudio</a> and Developed by <a href="https://www.facebook.com/ethernalcreativeid">Ethernal Creative Identities</a>';
+
+$lang['servicos_adicionais'] = 'Additional services';
+
+$lang['transform_event'] = 'Turn your event into a Brazilian party!';
+
+$lang['btn_contrate'] = "HIRE NOW";
+
+$lang['btn_orca'] = "MAKE YOUR BUDGET";
+
+$lang['classes_mais_informacoes'] = "For more information contact us:";

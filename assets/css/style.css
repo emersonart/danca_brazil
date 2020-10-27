@@ -18,13 +18,64 @@
 	--blue-dancabrazil: #2f3e80;
 	--dark-green-dancabrazil: #405a49;
 }
-*{
+body{
 	font-family: 'Work Sans';
 }
 body{
 	color: #2b2b2b;
 }
 
+#mainNav {
+    background: transparent;
+    transition: all .25s ease-in-out;
+}
+
+#mainNav.nav-active {
+    background: #161616;
+    color: white;
+    transition: all .25s ease-in-out;
+}
+#mainNav .navbar-brand  img{
+    transition: all .25s ease-in-out;
+}
+#mainNav.nav-active .navbar-brand  img{
+       max-width: 80px;
+       transition: all .25s ease-in-out;
+}
+#mainNav .nav-link{
+    position: relative;
+}
+#mainNav li:hover .nav-link{
+    color: var(--dancabrazil);
+}
+#mainNav li:hover .nav-link:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    height: 80px;
+}
+#mainNav .nav-link:after{
+        content: "";
+    border-top-width: 3px;
+    border-top-style: solid;
+    border-top-color: inherit;
+    right: 15px;
+    left: auto;
+    width: 0;
+    position: absolute;
+    transition: width 300ms ease-out;
+    bottom: 0;
+
+}
+#mainNav li:hover .nav-link:after{
+    left: 15px;
+    right: auto;
+    width: calc(100% - 30px);
+    width: -webkit-calc(100% - 30px);
+    transition: width 300ms ease-in;
+}
 .font-playfair{
     font-family: 'Playfair Display'!important;
 }
@@ -35,6 +86,30 @@ body{
 
 #mainNav, #mainNav a{
     color: white;
+}
+#slide_testimonials {
+    cursor: grab;
+}
+#slide_testimonials:focus, #slide_testimonials:active {
+    cursor: grabbing;
+}
+#slide_testimonials .aspas{
+    position: relative;
+    font-family: 'Playfair Display'!important;
+    font-style: italic;
+    font-size: 2em
+}
+#slide_testimonials .owner{
+    text-transform: uppercase;
+}
+
+#slide_testimonials .swiper-pagination-bullet, #slide_team .swiper-pagination-bullet{
+    background: white;
+    transition: all .5s ease-in-out
+}
+
+#slide_testimonials .swiper-pagination-bullet-active, #slide_team .swiper-pagination-bullet-active{
+    transform: scale(1.5);
 }
 
 .masthead {
@@ -462,7 +537,167 @@ a.arrows_dancabrazil:last-child{
 
 }
 
+#canal, #contato {
+    background: #f6f6f6;
+    
+}
+#canal .card-group a{
+    text-decoration: none;
+    color: black;
+   
+}
+#canal .card-group a h4{
+    font-family: 'Playfair Display'!important;
+}
+#canal .card-group .date{
+    font-size: .8em;
+}
+#team{
+    background: url('../images/bg_depoimentos.png');
+    background-size: cover;
+    background-position: center center;
+    color:white!important;
+}
+#slide_team .swiper-pagination{
+    position: relative;
+    margin-top: 30px;
+}
+#slide_team a{
+    text-decoration: none;
+}
+#slide_team a:hover .content_team:after{
+    opacity: 1;
+    background: rgba(0,0,0,.7);
+}
+#slide_team .content_team{
+    width: 300px;
+    height: 300px;
+    background-color: rgba(0,0,0,0.5);
+    background-image: url('../assets/images/user.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    overflow: hidden;
+    background-size: cover;
+    position: relative;
+    margin-left: auto;
+    display: flex;
+    margin-right: auto;
+    
+}
 
+#slide_team .content_team:hover .content_desc_team, #slide_team .swiper-slide-active .content_desc_team{
+    opacity: 1;
+    transition: all .5s ease-in-out;
+}
+
+#slide_team .content_desc_team{
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    transition: all .5s ease-in-out;
+    z-index: 1;
+    flex-direction: column;
+    border-radius: 100%;
+    overflow: hidden;
+    padding: .5em 1em;
+}
+
+#slide_team .content_desc_team h5{
+    font-family: 'Playfair Display'!important;
+}
+
+#sldie_team .content_desc_team a{
+    color:white;
+}
+
+#slide_team .card .card-img-overlay{
+    opacity: 0;
+    transition: all .5s ease-in-out;
+    color: white;
+}
+#slide_team .card .card-img-overlay a{
+    color:white;
+    text-decoration: none;
+}
+#slide_team .card .card-img-overlay h5{
+    font-family: 'Playfair Display'!important;
+    font-weight: bold;
+}
+#slide_team .card > .cont-img-over:before{
+    position: relative;
+}
+#slide_team .content_team:after{
+    content: '';
+    left:0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    position: absolute;
+    background: transparent;
+    border-radius: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all .5s ease-in-out;
+}
+#slide_team .content_team:hover:after, #slide_team .swiper-slide-active .content_team:after{
+    background: rgba(0,0,0,.5);
+    transition: all .5s ease-in-out;
+}
+#slide_team .card:hover .card-img-overlay{
+    opacity: 1;
+    transition: all .5s ease-in-out;
+}
+#contato input{
+    height: calc(2em + .95rem + 2px);
+}
+#contato input, #contato textarea, #contato button{
+    border-radius: 0;
+    border: 0;
+}
+#contato input:focus, #contato textarea:focus, 
+#contato input.focus, #contato textarea.focus,
+#contato input:active, #contato textarea:active,
+#contato input.active, #contato textarea.active{
+    box-shadow: 0 0 0 0.2rem rgba(0,0,0,.25);
+}
+#contato h1, #contato h2, #contato h3, #contato h4{
+    font-family: 'Playfair Display'!important;
+    font-weight: bold;
+}
+#contato button{
+    margin-top: 1.5em;
+    text-transform: uppercase;
+    padding: 1em 2em;
+}
+
+#footer_site{
+    background: black;
+    color:white;
+}
+#footer_site a{
+    color: white;
+    text-decoration: none;
+}
+#footer_site hr{
+    border-color:white;
+}
+.footer-divider{
+    width: 100%;
+    background: white;
+    height: 1px;
+    border:0;
+    margin: .3em 0;
+}
+
+footer .copyright{
+    text-align: center;
+
+}
 @media (min-width: 992px){
     .masthead {
         height: 100vh;
