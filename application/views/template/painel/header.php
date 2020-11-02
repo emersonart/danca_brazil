@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?=link_tag('assets/vendor/fontawesome/css/all.min.css')?>
 
   	<?=link_tag('assets/vendor/bootstrap/css/bootstrap.min.css')?>
+  	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v4.0.2/bootstrap-float-label.min.css"/>
     <?=link_tag('assets/vendor/DataTables/datatables.min.css')?>
  	  <?=link_tag('assets/vendor/fontawesome/css/all.min.css')?>

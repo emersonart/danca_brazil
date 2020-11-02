@@ -118,8 +118,8 @@ class Schedules_model extends CI_Model {
 		if($query->num_rows() > 0){
 			$result = $query->row_array();
 			$this->db->select('c.cur_id,c.cur_title_pt_br, c.cur_title_en');
-			$this->db->from('sch_schedules_courses sc');
-			$this->db->where('scr_sch_id',$id);
+			$this->db->from('schedules_courses sc');
+			$this->db->where('sc.scr_sch_id',$id);
 			$this->db->join('courses c','c.cur_id = sc.scr_cur_id','inner');
 			$query2 = $this->db->get();
 			if($query2->num_rows() > 0){
@@ -230,7 +230,7 @@ class Schedules_model extends CI_Model {
 					'scr_sch_id' => $id
 				];
 			}
-			$this->db->insert_batch('sch_schedules_courses',$arr);
+			$this->db->insert_batch('schedules_courses',$arr);
 		}
 		return $id;
 	}
@@ -251,14 +251,14 @@ class Schedules_model extends CI_Model {
         $updated = $this->db->update($this->table,$params);
         $arr = [];
         $this->db->where('scr_sch_id',$sch_id);
-        $this->db->delete('sch_schedules_courses');
+        $this->db->delete('schedules_courses');
         foreach ($cursos as $key => $value) {
 			$arr[] = [
 				'scr_cur_id' => $value,
 				'scr_sch_id' => $sch_id
 			];
 		}
-		$this->db->insert_batch('sch_schedules_courses',$arr);
+		$this->db->insert_batch('schedules_courses',$arr);
 		// if($updated){
 		// 	if(isset($old_cover) && $params['sch_cover'] != $old_cover){
 		// 		@unlink(set_realpath('assets/images/blog/'.$old_cover));

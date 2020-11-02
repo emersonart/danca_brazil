@@ -6,15 +6,17 @@ class Agenda extends CI_Controller {
 		parent::__construct();
 		$this->load->library("pagination");
 		$this->load->model('Schedules_model','agenda');
-		//$this->load->model('Courses_model','cursos');
+		$this->load->model('Courses_model','cursos');
 	}
 
 
 	public function index(){
 		$params['select'] = "sch_id, sch_datetime,sch_title_pt_br, sch_title_en,sch_show";
 		$params['order'] = ["sch_id"=>"desc"];
-		$params['no_cursos'] =true;
+		$params['no_schedules_courses'] =true;
 		$agendas = $this->agenda->get_all($params);
+		
+
 		if($agendas){
 			foreach ($agendas as $ln => $agenda) {
 				$agendas[$ln]['sch_datetime'] = date('d/m/Y \à\s H:i',strtotime($agenda['sch_datetime']));
@@ -25,9 +27,10 @@ class Agenda extends CI_Controller {
 				$agendas[$ln]['botoes'] .= "<a href='".base_url('painel/agenda/update/'.$agenda['sch_id'])."' class='btn btn-sm btn-primary'><i class='far fa-edit'></i></a> ";
 				$agendas[$ln]['botoes'] .= "<a href='".base_url('painel/agenda/toggle/'.$agenda['sch_id'])."' class='btn btn-sm btn-".$cl."'>".$eo."</a> ";
 				$agendas[$ln]['botoes'] .= "<a href='".base_url('painel/agenda/remove/'.$agenda['sch_id'])."' class='btn btn-sm btn-danger'><i class='far fa-trash-alt'></i></a> ";
-				$agendas[$ln]['botoes'] = ['style'=>'width: 180px','data'=>$agendas[$ln]['botoes']];
 			}
 		}
+
+
 		
 
 		$data = [
@@ -58,10 +61,9 @@ class Agenda extends CI_Controller {
 		$this->form_validation->set_rules('sch_title_pt_br','Título em Português','trim|required');
 		$this->form_validation->set_rules('sch_title_en','Título em inglês','trim|required');
 		$this->form_validation->set_rules('cursos[]','Categorias','trim|required');
-		$this->form_validation->set_rules('sch_news_pt_br','Corpo da notícia em português','trim|required');
-		$this->form_validation->set_rules('sch_news_en','Corpo da notícia em Inglês','trim|required');
-		$this->form_validation->set_rules('sch_link','Link personalizado','trim|is_unique[blog.sch_link]',['is_unique'=>'O link personalizado precisa ser único.']);
-		$this->form_validation->set_rules('sch_send_to_email','Enviar para inscritos','trim');
+		$this->form_validation->set_rules('sch_day_pt_br','Dia em português','trim|required');
+		$this->form_validation->set_rules('sch_day_en','Dia em Inglês','trim|required');
+		$this->form_validation->set_rules('sch_link','Link personalizado','trim|is_unique[schedules.sch_link]',['is_unique'=>'O link personalizado precisa ser único.']);
 		$this->form_validation->set_rules('sch_show','Exibir','trim');
 
 		if($this->form_validation->run() == FALSE){
@@ -71,17 +73,11 @@ class Agenda extends CI_Controller {
 		}else{
 			$send_data = $this->input->post();
 
-			$send_data['sch_timezone'] = date_default_timezone_get();
-
 			if(!isset($send_data['sch_link']) || $send_data['sch_link'] == ''){
 				$send_data['sch_link'] = remove_especial_chars($send_data['sch_title_pt_br']);
 			}
-			if(!isset($send_data['sch_send_to_email']) || $send_data['sch_send_to_email'] == ''){
-				$send_data['sch_send_to_email'] = 0;
-			}else{
-				$send_data['sch_send_to_email'] = 1;
-			}
-			$images = false;
+
+			/*$images = false;
 			if(isset($_FILES['images']['name']) && count($_FILES['images']['name']) > 0){
 				$images = upload_imagem($_FILES,'blog');
 			}		
@@ -95,48 +91,12 @@ class Agenda extends CI_Controller {
 				}
 				
 				
-			}
+			}*/
 
 
 				//fazer o metodo para cadastrar!!!
 			if($inserted = $this->agenda->insert($send_data)){
-				if($send_data['sch_send_to_email'] === 1){
-					$this->load->model('Newsletters_model','newsletters');
-					$params['select'] = "new_id,new_email,new_name,new_contact,new_country_code";
-					$params['order'] = ["new_id"=>"asc"];
-					$agendas = $this->newsletters->get_all($params);
-
-					if($agendas){
-						foreach ($agendas as $key => $sub) {
-							$enviar_email = [
-								'nome' => $sub['new_name'],
-								'email' => $sub['new_email'],
-								'lang' => ($sub['new_country_code'] == '' || strpos(strtolower($sub['new_country_code']),'br') ? 'pt-br' : 'en'),
-								'url' => $send_data['sch_link'],
-								'telefone' => '',
-								'mensagem' => $send_data,
-								'new_id' => $sub['new_id']
-							];
-
-							$enviar_email['url'] = $enviar_email['lang']."/agenda"."/".date('m')."/".date('Y')."/".$enviar_email['url'];
-							$enviar_email['titulo'] = $send_data['sch_title_'.str_replace('-','_',$enviar_email['lang'])];
-							$send_email = enviar_email($enviar_email,'newsletters_news');
-							if(!$send_email){
-								if(!isset($erros_email)){
-									$erros_email = 0;
-								}
-								$erros_email++;
-								ethernal_log('ETH_ERROR','Erro ao enviar newsletter',implode(' | ',$send_data)." -- recebedor: ".implode(' | ',$enviar_email),__METHOD__);
-								ethernal_log('ETH_ERROR','Retorno ao enviar email',(is_array($send_email) ? implode(' | ',$send_email) : $send_email),__METHOD__);
-							}else{
-								$this->newsletter->insert_send_new(['sne_new_id'=>$enviar_email['new_id'],'sne_sch_id'=>$inserted]);
-							}
-						}
-						if(isset($erros_email)){
-							set_msg('Notícia postada com sucesso, mas houve '.$erros_email.' e-mails não enviados','warning');
-						}
-					}
-				}
+				set_msg('Agenda adicionada','success');
 				redirect('painel/agenda');
 			}else{
 				ethernal_log('ETH_ERROR','Erro ao cadastrar nova notíca com imagem',implode(' | ',$send_data),__METHOD__);
@@ -176,10 +136,10 @@ class Agenda extends CI_Controller {
 		
 		$this->form_validation->set_rules('sch_title_pt_br','Título em Português','trim|required');
 		$this->form_validation->set_rules('sch_title_en','Título em inglês','trim|required');
-		$this->form_validation->set_rules('cursos[]','Categorias','trim|required');
-		$this->form_validation->set_rules('sch_news_pt_br','Corpo da notícia em português','trim|required');
-		$this->form_validation->set_rules('sch_news_en','Corpo da notícia em Inglês','trim|required');
-		$this->form_validation->set_rules('sch_link','Link personalizado','trim'.((isset($_POST) && isset($_POST['sch_link']) && $_POST['sch_link'] == $agendas['sch_link']) ? '':'|is_unique[blog.sch_link]'),['is_unique'=>'O link personalizado precisa ser único.']);
+		$this->form_validation->set_rules('cursos[]','Cursos','trim|required');
+		$this->form_validation->set_rules('sch_day_pt_br','Dia em português','trim|required');
+		$this->form_validation->set_rules('sch_day_en','Dia em inglês','trim|required');
+		$this->form_validation->set_rules('sch_link','Link personalizado','trim'.((isset($_POST) && isset($_POST['sch_link']) && $_POST['sch_link'] == $agendas['sch_link']) ? '':'|is_unique[schedules.sch_link]'),['is_unique'=>'O link personalizado precisa ser único.']);
 		$this->form_validation->set_rules('sch_show','Exibir','trim');
 
 		if($this->form_validation->run() == FALSE){
@@ -193,7 +153,7 @@ class Agenda extends CI_Controller {
 				$send_data['sch_link'] = $agendas['sch_link'];
 			}
 
-			$images = false;
+			/*$images = false;
 			if(isset($_FILES['images']['name']) && count($_FILES['images']['name']) > 0){
 				$images = upload_imagem($_FILES,'agenda');
 			}		
@@ -209,7 +169,7 @@ class Agenda extends CI_Controller {
 				}
 				
 				
-			}
+			}*/
 				
 				
 			//fazer o metodo para cadastrar!!!
@@ -238,7 +198,7 @@ class Agenda extends CI_Controller {
 			'title' => 'Atualizar Agenda',
 			'heading' => 'Atualizar Agenda',
 			'cursos' => $cursos,
-			'news' => $agendas
+			'agenda' => $agendas
 		];
 		
 		load_template($data,'agenda/update');

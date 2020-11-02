@@ -26,6 +26,10 @@ function update_csrf(promisse = false){
 }
 
 $(document).ready(function(){
+	$('.timepm').timepicker({
+		uiLibrary: 'bootstrap4',
+    format: 'hh:MM TT'
+  });
   $("#visualizar_imagem_blo").on('show.bs.modal',function(e){
   let modal = $(this);
   let trigger = $(e.relatedTarget);

@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header">
-				<a href="<?=base_url('painel/blog/insert')?>" class="btn btn-sm btn-success float-right">Cadastrar</a>
+				<a href="<?=base_url('painel/agenda/insert')?>" class="btn btn-sm btn-success float-right">Cadastrar</a>
                 <h5 class="title d-inline-block"><?=$heading;?></h5>        
             </div>
             <div class="card-body">
