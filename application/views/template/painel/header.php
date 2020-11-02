@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body class="" data-baseurl="<?=base_url()?>"  data-csrf="<?=$this->security->get_csrf_token_name()?>">
   <div class="wrapper ">
-    <div class="sidebar" data-color="black" data-active-color="hennekam">
+    <div class="sidebar" data-color="black" data-active-color="dancabrazil">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
