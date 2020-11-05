@@ -488,6 +488,10 @@ a.arrows_dancabrazil:last-child{
     opacity: 1;
 }
 
+.play-button > div, .play-button-custom > div{
+    min-height: 200px;
+}
+
 .instagram-images {
     background-size: 155%;
     background-position: center center;
@@ -541,15 +545,15 @@ a.arrows_dancabrazil:last-child{
     background: #f6f6f6;
     
 }
-#canal .card-group a{
+#canal .card a{
     text-decoration: none;
     color: black;
    
 }
-#canal .card-group a h4{
+#canal .card a h4{
     font-family: 'Playfair Display'!important;
 }
-#canal .card-group .date{
+#canal .card .date{
     font-size: .8em;
 }
 #team{
@@ -698,6 +702,11 @@ footer .copyright{
     text-align: center;
 
 }
+
+.swiper-button-next:after,
+.swiper-button-prev:after{
+    padding: 1.5em
+}
 @media (min-width: 992px){
     .masthead {
         height: 100vh;
@@ -705,3 +714,7 @@ footer .copyright{
     }
 }
 
+.swiper-lazy-preloader{
+    display: inline-block!important;
+
+}

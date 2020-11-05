@@ -46,22 +46,12 @@ class Videos extends CI_Controller {
 	}
 
 	public function insert(){
-		$params['select'] = "cur_id,cur_title_pt_br, cur_title_en";
-		$tgs = $this->cursos->get_all($params);
-		$cursos = [];
-		if($tgs){
-			foreach ($tgs as $ln => $tag) {
-				$cursos[$tag['cur_id']] = $tag['cur_title_pt_br']." / ".$tag['cur_title_en'];
-			}
-
-		}
 		
 		$this->form_validation->set_rules('vid_title_pt_br','Título em Português','trim|required');
 		$this->form_validation->set_rules('vid_title_en','Título em inglês','trim|required');
-		$this->form_validation->set_rules('cursos[]','Categorias','trim|required');
-		$this->form_validation->set_rules('vid_day_pt_br','Dia em português','trim|required');
-		$this->form_validation->set_rules('vid_day_en','Dia em Inglês','trim|required');
-		$this->form_validation->set_rules('vid_link','Link personalizado','trim|is_unique[schedules.vid_link]',['is_unique'=>'O link personalizado precisa ser único.']);
+		$this->form_validation->set_rules('vid_description_pt_br','Descrição em português','trim');
+		$this->form_validation->set_rules('vid_description_en','Descrição em Inglês','trim');
+		$this->form_validation->set_rules('vid_link','Link do vídeo','trim|is_unique[videos.vid_link]|required',['is_unique'=>'Link de vídeo já adicionado']);
 		$this->form_validation->set_rules('vid_show','Exibir','trim');
 
 		if($this->form_validation->run() == FALSE){
@@ -71,26 +61,30 @@ class Videos extends CI_Controller {
 		}else{
 			$send_data = $this->input->post();
 
-			if(!isset($send_data['vid_link']) || $send_data['vid_link'] == ''){
-				$send_data['vid_link'] = remove_especial_chars($send_data['vid_title_pt_br']);
-			}
-
-			/*$images = false;
+			$images = false;
 			if(isset($_FILES['images']['name']) && count($_FILES['images']['name']) > 0){
-				$images = upload_imagem($_FILES,'blog');
+				$images = upload_imagem($_FILES,'videos');
 			}		
 			if($images){
 				if(isset($images['vid_image'])){
 					$send_data['vid_image'] = $images['vid_image'];
 				}
 
-				if(isset($images['vid_cover'])){
-					$send_data['vid_cover'] = $images['vid_cover'];
-				}
+				// if(isset($images['vid_cover'])){
+				// 	$send_data['vid_cover'] = $images['vid_cover'];
+				// }
 				
 				
-			}*/
+			}
 
+			$send_data['vid_description_en'] = nl2br2($send_data['vid_description_en']);
+			$send_data['vid_description_pt_br'] = nl2br2($send_data['vid_description_pt_br']);
+
+			if(!isset($send_data['vid_show']) || empty($send_data['vid_show'])){
+				$send_data['vid_show'] = 0;
+			}else{
+				$send_data['vid_show'] = 1;
+			}
 
 				//fazer o metodo para cadastrar!!!
 			if($inserted = $this->video->insert($send_data)){
@@ -105,7 +99,6 @@ class Videos extends CI_Controller {
 		$data= [
 			'title' => 'Nova notícia',
 			'heading' => 'Nova notícia',
-			'cursos' => $cursos,
 		];
 		
 		load_template($data,'videos/insert');
@@ -124,9 +117,9 @@ class Videos extends CI_Controller {
 		
 		$this->form_validation->set_rules('vid_title_pt_br','Título em Português','trim|required');
 		$this->form_validation->set_rules('vid_title_en','Título em inglês','trim|required');
-		$this->form_validation->set_rules('vid_description_pt_br','Dia em português','trim|required');
-		$this->form_validation->set_rules('vid_description_en','Dia em inglês','trim|required');
-		$this->form_validation->set_rules('vid_link','Link personalizado','trim'.((isset($_POST) && isset($_POST['vid_link']) && $_POST['vid_link'] == $videos['vid_link']) ? '':'|is_unique[schedules.vid_link]'),['is_unique'=>'O link personalizado precisa ser único.']);
+		$this->form_validation->set_rules('vid_description_pt_br','Dia em português','trim');
+		$this->form_validation->set_rules('vid_description_en','Dia em inglês','trim');
+		$this->form_validation->set_rules('vid_link','Link personalizado','trim'.((isset($_POST) && isset($_POST['vid_link']) && $_POST['vid_link'] == $videos['vid_link']) ? '':'|is_unique[videos.vid_link]'),['is_unique'=>'O link do vídeo precisa ser único.']);
 		$this->form_validation->set_rules('vid_show','Exibir','trim');
 
 		if($this->form_validation->run() == FALSE){
@@ -151,6 +144,12 @@ class Videos extends CI_Controller {
 				}
 
 				
+			}
+
+			if(!isset($send_data['vid_show']) || empty($send_data['vid_show'])){
+				$send_data['vid_show'] = 0;
+			}else{
+				$send_data['vid_show'] = 1;
 			}
 				
 				

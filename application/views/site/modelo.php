@@ -272,18 +272,23 @@
                     </div>
                 </div>
                 <?php if(isset($videos) && is_array($videos)){ ?>
-                    <div class="row justify-content-center">
-                        <div class="col-10">
-                            <div class="card-group justify-content-center">
+                    <div id="slide_videos" class="swiper-container py-3">
+                        <div class="swiper-button-prev"></div>   
+                        <div class="swiper-button-next"></div>   
+                        <div class="swiper-wrapper">
+
                                 <?php foreach ($videos as $key => $video) { ?>
-                                    <div class="col-md-6">
-                                        <div class="card border-0">
+                                    <div class="swiper-slide">
+                                        <div class="card border-0 h-100">
                                             <a href="<?=$video['vid_link']?>" data-fancybox="canal" class="play-button no-text">
                                                 <div>
-                                                    <?=img(['src'=>$video['vid_image'], 'class'=>'card-img-top'])?>
+                                                    <?=img(['data-src'=>$video['vid_image'], 'class'=>'card-img-top swiper-lazy'])?>
+                                                     <span class="swiper-lazy-preloader swiper-lazy-preloader-black"></span>
                                                 </div>
                                                 
+                                                
                                             </a>
+
                                             <div class="card-body">
                                                 <a href="<?=$video['vid_link']?>" target="_blank">
                                                     <h4><?=$video['vid_title_'.$lang_bd]?></h4>
@@ -300,10 +305,10 @@
                                         </div>
                                     </div>
                                 <?php } ?>
-                            </div>
+
                         </div>
+
                     </div>       
-                </div>
                 <?php } ?>
             </div>
         </section>
@@ -316,7 +321,7 @@
                        
                         <div class="swiper-slide">
                             <?php if($equipe['tea_link'] != ''){ ?>
-                            <a href="#">
+                            <a href="<?=$equipe['tea_link']?>" target="_blank">
                             <?php } ?>
                                 <div class="content_team" style="background-image: url('/assets/images/team/<?=$equipe['tea_image'] ? $equipe['tea_image'] : 'user.png'?>')">
                                     

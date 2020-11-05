@@ -74,8 +74,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <p>Vídeos</p>
             </a>
           </li>
-          <li class="<?=set_active('painel/equipe')?>">
-            <a href="<?=base_url('painel/equipe')?>" >
+          <li class="<?=set_active('painel/team')?>">
+            <a href="<?=base_url('painel/team')?>" >
               <i class="nc-icon nc-email-85"></i>
               <p>Equipe</p>
             </a>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-define('SITE_NAME','Hennekam Wines');
+define('SITE_NAME','Dança Brazil');
 defined('HASH_SITE') OR define('HASH_SITE','63ca3f67d63120202305');
 define('SITE_DOMAIN','url-site');
 define('EMAIL_SITE','no-reply@hennekamwines.com');

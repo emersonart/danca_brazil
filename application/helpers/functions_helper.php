@@ -308,3 +308,16 @@ if(!function_exists('clear_cch')){
 		
 	}
 }
+
+if(!function_exists('nl2br2')){
+	function nl2br2($string) {
+		$string = str_replace(array("\r\n", "\r", "\n"), "<br />", $string);
+		return $string;
+	}
+}
+
+if(!function_exists('br2nl')){
+	function br2nl($string){
+	    return preg_replace('/\<br(\s*)?\/?\>/i', "\n", $string);
+	}
+}

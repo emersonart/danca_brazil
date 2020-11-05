@@ -173,4 +173,21 @@ class Videos_model extends CI_Model {
     	return $this->db->delete($this->table);
     }
 
+    public function toggle($vid_id){
+    	$new = $this->get_by_pk($vid_id);
+    	if($new){
+    		if($new['vid_show'] == 1){
+    			$show = 0;
+    		}else{
+    			$show = 1;
+    		}
+    		$this->db->where('vid_id',$vid_id);
+	        $params = [
+	        	'vid_show' => $show
+	        ];
+	        return $this->db->update($this->table,$params);
+    	}
+    	return false;
+    }
+
 }

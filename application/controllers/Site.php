@@ -100,10 +100,10 @@ class Site extends MY_Controller {
 		if($videos){
 			foreach ($videos as $key => $video) {
 
-                if(is_file(set_realpath('/assets/images/videos/').$video['vid_image'])){
-                    $imagem = 'assets/images/videos/'.$video['vid_image'];
+                if(!empty($video['vid_image']) && is_file(set_realpath('assets/images/videos/'.$video['vid_image']))){
+                    $imagem = base_url('assets/images/videos/'.$video['vid_image']);
                 }else{
-                    $imagem = 'assets/images/videos/no_video.jpg';
+                    $imagem = base_url('assets/images/videos/no_video.jpg');
                     if(strpos($video['vid_link'],'youtu.be') !== false){
                         $imagem = 'https://i.ytimg.com/vi/'.explode('youtu.be/',$video['vid_link'])[1].'/mqdefault.jpg';
                     }else{
@@ -130,6 +130,14 @@ class Site extends MY_Controller {
 			}
 		}
 		$agenda = $this->agenda->get_all();
+		$team = $this->team->get(['where'=>['tea_show'=>1],'order'=>['tea_id'=>'DESC']]);
+		if($team){
+			foreach ($team as $key => $value) {
+				if(empty($value['tea_image']) || !is_file(set_realpath('assets/images/team/'.$value['tea_image']))){
+					$team[$key]['tea_image'] = 'user.png';
+				}
+			}
+		}
 		$data = [
 			'lang_bd' => $lang,
 			'title' => 'site',
@@ -137,7 +145,7 @@ class Site extends MY_Controller {
 			'testimonials' => $this->testimonials->get(['where'=>['tes_show'=>1],'order'=>['tes_id'=>'DESC']]),
 			'language' => $lang,
 			'videos' => $videos,
-			'team' => $this->team->get(['where'=>['tea_show'=>1],'order'=>['tea_id'=>'DESC']]),
+			'team' => $team,
 			'servicos_adicionais' => $this->service->get_all(),
 			'agenda' => $agenda
 		];

@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="has-float-label">
-								<input type="text" autocomplete="off" class="form-control form-round form-creser timepm" name="sch_hour" placeholder="Hora" value="<?=$agenda['sch_hour']?>" >
+								<input type="text" autocomplete="off" readonly class="form-control form-round form-creser timepm" name="sch_hour" placeholder="Hora" value="<?=$agenda['sch_hour']?>" >
 								<span for="no_caracter">Hora</span>
 								</label>
 								

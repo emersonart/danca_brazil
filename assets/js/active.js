@@ -396,5 +396,37 @@ if($("#slide_team").length){
 	    })
 }
 
+if($("#slide_videos").length){
+	var videoSwiper = new Swiper('#slide_videos',{
+			loop: true,
+	    	speed: 1200,
+	    	autoplay:{
+	    		delay: 10000
+	    	},
+	    	slidesPerView: 2,
+	    	spaceBetween: 15,
+	    	lazy: true,
+	    	pagination: {
+		        el: '.swiper-pagination',
+		        clickable: true,
+		    },
+		    navigation: {
+		        nextEl: '.swiper-button-next',
+		        prevEl: '.swiper-button-prev',
+		    },
+		    breakpoints: {
+		        100: {
+		          	slidesPerView: 2,
+		        },
+		        560: {
+		          	slidesPerView: 2,
+		        },
+		        768: {
+		          	slidesPerView: 2,
+		        }
+		    },
+	    })
+}
+
 
 
