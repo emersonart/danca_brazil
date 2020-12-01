@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                ©
 	                <script>
 	                  document.write(new Date().getFullYear())
-	                </script>, desenvolvido por Ethernal Creative Identities para Hennekam Wines
+	                </script>, desenvolvido por Ethernal Creative Identities para <?=SITE_NAME?>
 	              </span>
 	            </div>
 	          </div>

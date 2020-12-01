@@ -29,7 +29,7 @@ class Depoimentos extends CI_Controller {
 		
 
 		$data = [
-			'heading' => 'Posts',
+			'heading' => 'Depoimentos',
 			'testimonials' => $news
 		];
 		load_template($data,'testimonials/index');

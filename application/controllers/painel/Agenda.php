@@ -34,7 +34,7 @@ class Agenda extends CI_Controller {
 		
 
 		$data = [
-			'heading' => 'Posts',
+			'heading' => 'Agenda',
 			'agenda' => $agendas
 		];
 		load_template($data,'agenda/index');
@@ -105,8 +105,8 @@ class Agenda extends CI_Controller {
 		}
 
 		$data= [
-			'title' => 'Nova notícia',
-			'heading' => 'Nova notícia',
+			'title' => 'Nova agenda',
+			'heading' => 'Nova agenda',
 			'cursos' => $cursos,
 		];
 		

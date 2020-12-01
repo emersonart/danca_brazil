@@ -32,7 +32,7 @@ class Team extends CI_Controller {
 		
 
 		$data = [
-			'heading' => 'Posts',
+			'heading' => 'Equipe',
 			'team' => $teams
 		];
 		load_template($data,'team/index');

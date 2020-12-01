@@ -32,7 +32,7 @@ class Videos extends CI_Controller {
 		
 
 		$data = [
-			'heading' => 'Posts',
+			'heading' => 'Vídeos',
 			'videos' => $videos
 		];
 		load_template($data,'videos/index');
@@ -97,8 +97,8 @@ class Videos extends CI_Controller {
 		}
 
 		$data= [
-			'title' => 'Nova notícia',
-			'heading' => 'Nova notícia',
+			'title' => 'Novo vídeo',
+			'heading' => 'Novo vídeo',
 		];
 		
 		load_template($data,'videos/insert');

@@ -216,7 +216,7 @@ if(!function_exists('show_menu')){
 			    		</li>
 			    		<li class="nav-item flags">
 			    			<a href="'.base_url('en/'.implode('/',$ci->uri->segments)).'" class="nav-link">
-			    	 			<img src="'.base_url('assets/images/countries/US.png').'" alt="Change to English" title="Change to English" data-toggle="tooltip" data-placement="bottom">
+			    	 			<img src="'.base_url('assets/images/countries/AU.png').'" alt="Change to English" title="Change to English" data-toggle="tooltip" data-placement="bottom">
 			    			</a>
 			    		</li></div>';
 			$return .= '</ul>';
