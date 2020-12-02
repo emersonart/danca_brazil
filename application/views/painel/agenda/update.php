@@ -94,11 +94,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										'multiple' => 'multiple',
 										'data-curs' => "true",
 										"class"=> "select2 form-control",
-										"data-placeholder" => "Selecionar Tags (separado por ' , ', 'espaço', ou ';'"
+										"data-placeholder" => "Selecionar Cursos (separado por ' , ', 'espaço', ou ';'"
 									);
 								echo form_dropdown('cursos[]',$cursos,$arrr,$js)?>
 
-								<small class="text-muted">Ao inserir uma tag que ainda não existe, será criado uma nova tag com o mesmo nome para todos os idiomas, para alterar utilizar a seção <strong>tags</strong>.</small>
+								
 							</div>
 						</div>
 					</div>

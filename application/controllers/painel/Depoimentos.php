@@ -36,10 +36,10 @@ class Depoimentos extends CI_Controller {
 	}
 
 	public function remove($id){
-		if(!$this->blog->remove($id)){
-			set_msg('Erro ao remover post','danger');
+		if(!$this->dep->remove($id)){
+			set_msg('Erro ao remover depoimento','danger');
 		}
-		redirect('painel/blog');
+		redirect('painel/depoimentos');
 	}
 
 	public function insert(){

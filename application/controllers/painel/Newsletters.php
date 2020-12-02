@@ -19,7 +19,7 @@ class Newsletters extends CI_Controller {
 			foreach ($news as $ln => $new) {
 				$news[$ln]['new_datetime'] = date('d/m/Y \à\s H:i',strtotime($new['new_datetime']));
 				$news[$ln]['botoes'] = "";
-				$news[$ln]['botoes'] .= "<a href='".base_url('painel/blog/remove/'.$new['new_id'])."' class='btn btn-sm btn-danger'><i class='far fa-trash-alt'></i></a> ";
+				$news[$ln]['botoes'] .= "<a href='".base_url('painel/newsletters/remove/'.$new['new_id'])."' class='btn btn-sm btn-danger'><i class='far fa-trash-alt'></i></a> ";
 				$news[$ln]['botoes'] = ['style'=>'max-width: 180px','data'=>$news[$ln]['botoes']];
 			}
 		}
@@ -29,5 +29,12 @@ class Newsletters extends CI_Controller {
 			'newsletters' => $news
 		];
 		load_template($data,'newsletters/index');
+	}
+
+	public function remove($id){
+		if(!$this->newsletters->remove($id)){
+			set_msg('Erro ao remover post','danger');
+		}
+		redirect('painel/newsletters');
 	}
 }
