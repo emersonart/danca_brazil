@@ -473,7 +473,7 @@
 	<script type="text/javascript" src="<?=base_url('assets/vendor/swiper/swiper-bundle.js')?>"></script>
 	<script type="text/javascript" src="<?=base_url('assets/vendor/scrollUp/jquery.scrollUp.js')?>"></script>
 	<script type="text/javascript" src="<?=base_url('assets/vendor/fancybox/jquery.fancybox.js')?>"></script>
-	<script type="text/javascript" src="<?=base_url('assets/js/active.js')?>"></script>
+	<script type="text/javascript" src="<?=base_url('assets/js/active.js?t='.uniqid(now()))?>"></script>
     <?php $this->load->view('site/__modals/send_ajax');?>
     <?php $this->load->view('site/__modals/team');?>
 

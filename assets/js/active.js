@@ -435,7 +435,9 @@ if($("#slide_team").length){
 	var teamSwiper = new Swiper('#slide_team',{
 			loop: true,
 	    	speed: 400,
-	    	autoplay:true,
+	    	autoplay:{
+	    		delay: 7000
+	    	},
 	    	slidesPerView: 3,
 	    	spaceBetween: 5,
 	    	pagination: {
