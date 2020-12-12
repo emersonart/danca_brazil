@@ -26,13 +26,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?=link_tag('assets/vendor/fancybox/jquery.fancybox.css')?>
 		<?=link_tag('assets/css/style.css?t='.uniqid(rand(0,50).md5(strtotime(date('Y-m-d-H-i-s')))))?>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177863655-1"></script>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-0CZHL1XNSG"></script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
 
-		  gtag('config', 'UA-177863655-1');
+		  gtag('config', 'G-0CZHL1XNSG');
 		</script>
 
 	</head>

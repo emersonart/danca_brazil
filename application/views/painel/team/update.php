@@ -62,13 +62,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="pt_br" role="tabpanel" aria-labelledby="home-tab">
+                                     <div class="form-group">
+                                        <label for="tea_summary_pt_br">Resumo</label>
+                                        <textarea name="tea_summary_pt_br" id="tea_summary_pt_br" class=" form-control" rows="5"><?=$team['tea_summary_pt_br']?></textarea>
+                                    </div>
                                     <div class="form-group">
-                                        <textarea name="tea_description_pt_br" id="tea_description_pt_br" class=" form-control" rows="10"><?=$team['tea_description_pt_br']?></textarea>
+                                        <label for="tea_description_pt_br">Texto completo</label>
+                                        <textarea name="tea_description_pt_br" id="tea_description_pt_br" class="summernote form-control" rows="10"><?=$team['tea_description_pt_br']?></textarea>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show" id="en" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="form-group">
-                                        <textarea name="tea_description_en" id="tea_description_en" class=" form-control" rows="10"><?=$team['tea_description_en']?></textarea>
+                                        <label for="tea_summary_en">Resumo</label>
+                                        <textarea name="tea_summary_en" id="tea_summary_en" class=" form-control" rows="5"><?=$team['tea_summary_en']?></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tea_description_pt_br">Texto completo</label>
+                                        <textarea name="tea_description_en" id="tea_description_en" class="summernote form-control" rows="10"><?=$team['tea_description_en']?></textarea>
                                     </div>
                                 </div>
                             </div>

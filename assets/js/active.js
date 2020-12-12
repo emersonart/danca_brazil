@@ -1,6 +1,8 @@
 var base_url = document.querySelector('body').dataset.baseurl + document.querySelector('body').dataset.lang + '/';
+var lg = document.querySelector('body').dataset.lang;
 var base_url_no = document.querySelector('body').dataset.baseurl;
 var csrf_name = document.querySelector('body').dataset.csrf;
+var xtoken = 'da3db1670a5c3c2fa0b0c0b787bcb8ab3b8aa2790584b92400efdd66de5f49';
 
 $(window).scroll(function() { 
     var scroll = $(window).scrollTop();
@@ -95,6 +97,69 @@ function update_csrf(promisse = false){
 // $('.cellphone').mask(SPMaskBehavior, spOptions);
 
 $(function () {
+	$('#modal_team').on('hide.bs.modal',function(ev){
+		let $modal = $(this);
+		$modal.find('.content-error').hide();
+		$modal.find('.content-success').hide();
+		$modal.find('.loader').hide();
+		$modal.find('.avatar img').attr('src','');
+		$modal.find('.name').attr('src','');
+		$modal.find('.social a').attr('href','');
+		$modal.find('.about_member').html('');
+	})
+	$('#modal_team').on('show.bs.modal',function(ev){
+		let $modal = $(this);
+		$modal.find('.content-error').hide();
+		$modal.find('.content-success').hide();
+		$modal.find('.social').hide();
+		$modal.find('.loader').show();
+		let trigger = $(ev.relatedTarget);
+		let membro = trigger.data('member');
+		if(membro){
+			update_csrf('promisse').then(function(csrf_response){
+				return_response = csrf_response.token_value;
+				$('input[name="' + csrf_name  + '"]').each(function(i, el){
+					$(el).val(return_response);
+				});
+
+				let dados = {
+					[csrf_name]: return_response,
+					token: xtoken
+				}
+
+				$.ajax({
+					url: base_url + 'api/get_member_team/' + membro,
+					data: dados,
+					method: 'post',
+					cache: false,
+					dataType: 'json'
+				}).then(function(res){
+					if(!res.error){
+						let member = res.data;
+						$modal.find('.avatar img').attr('src',member.tea_image);
+						$modal.find('.name').text(member.tea_name);
+						if(member.tea_link && member.tea_link != '' && member.tea_link != '#'){
+							$modal.find('.social a').attr('href',member.tea_link);
+							$modal.find('.social').show();
+						}
+						
+						$modal.find('.about_member').html((lg == 'en' ? member.tea_description_en : member.tea_description_pt_br));
+						$modal.find('.content-success').show();
+					}else{
+						$modal.find('.content-error').show();
+					}
+				}).catch(function(){
+					$modal.find('.content-error').show();
+				}).always(function(){
+					$modal.find('.loader').hide();
+				})
+
+			}).catch(function(){
+				console.log(this);
+			})
+		}
+		
+	})
 	$.scrollUp({
 		scrollName: 'scrollUp',
 		topDistance: '150',

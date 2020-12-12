@@ -461,4 +461,61 @@ class Api extends CI_Controller {
 		$this->output_json($json_return);
 	}
 
+	public function get_member_team($id){
+		$json_return = array();
+		$xtoken = 'da3db1670a5c3c2fa0b0c0b787bcb8ab3b8aa2790584b92400efdd66de5f49';
+		if($this->input->is_ajax_request() && $this->input->post()) {
+			$data = $this->input->post();
+			if(!isset($data['token']) || $data['token'] != $xtoken ){
+				$json_return = array(
+					'error' => 'erro_auth',
+					'msg' => 'Sem permissão'
+				);
+			}else{
+				$this->load->model('Team_model','team');
+				$membro = $this->team->get_by_pk($id);
+				if(!$membro){
+					$json_return = array(
+						'error' => 'erro_not_found',
+						'msg' => 'Nada encontrado'
+					);
+				}else{
+					$permitidos = [
+						'tea_name',
+						'tea_image',
+						'tea_link',
+						'tea_description_pt_br',
+						'tea_description_en'
+					];
+					foreach ($membro as $key => $value) {
+						if(!in_array($key, $permitidos)){
+							unset($membro[$key]);
+						}else if($key == 'tea_image'){
+							if(empty($membro[$key]) || !is_file(set_realpath('assets/images/team/'.$membro[$key]))){
+								$membro[$key] = base_url('assets/images/team/user.png');
+							}else{
+								$membro[$key] = base_url('assets/images/team/'.$membro[$key]);
+							}
+						}
+
+					}
+					$json_return = [
+						'error' => false,
+						'msg' => 'Membro encontrado',
+						'data' => $membro
+					];
+				}
+			}
+		}else{
+
+			$json_return = array(
+				'error' => 'error_post',
+				'msg' => 'Parâmetros incorretos de envio'
+			);
+
+			
+		}
+		echo json_encode($json_return);
+	}
+
 }

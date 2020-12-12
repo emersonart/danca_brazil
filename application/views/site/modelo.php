@@ -24,16 +24,14 @@
 		<?=link_tag('assets/vendor/swiper/swiper-bundle.css')?>
 		<?=link_tag('assets/vendor/fancybox/jquery.fancybox.css')?>
 		<?=link_tag('assets/css/style.css?t='.uniqid(rand(0,50).md5(strtotime(date('Y-m-d-H-i-s')))))?>
-		<?php /*<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177863655-1"></script>
-		 <script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-0CZHL1XNSG"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-		  gtag('config', 'UA-177863655-1');
-		</script>
-        */ ?>
+          gtag('config', 'G-0CZHL1XNSG');
+        </script>
 
 	</head>
 <body data-baseurl="<?=base_url()?>" data-csrf="<?=$this->security->get_csrf_token_name()?>" data-lang="<?=get_language()?>">
@@ -319,24 +317,24 @@
                     <div class="swiper-wrapper">
                     <?php foreach ($team as $key => $equipe) { ?>
                        
-                        <div class="swiper-slide">
-                            <?php if($equipe['tea_link'] != ''){ ?>
-                            <a href="<?=$equipe['tea_link']?>" target="_blank">
-                            <?php } ?>
+                        <div class="swiper-slide text-center">
+
+                            <a href="#" data-toggle="modal" data-member="<?=$equipe['tea_id']?>" data-target="#modal_team">
+
                                 <div class="content_team" style="background-image: url('/assets/images/team/<?=$equipe['tea_image'] ? $equipe['tea_image'] : 'user.png'?>')">
                                     
-                                    <div class="content_desc_team">
+                                    <div class="content_desc_team" >
                                         
                                         <h5><?=$equipe['tea_name']?></h5>
                                         
-                                        <?=$equipe['tea_description_'.$lang_bd]?>
+                                        <?=$equipe['tea_summary_'.$lang_bd]?>
                                          
                                     </div>
                                   
                                 </div>
-                            <?php if($equipe['tea_link'] != ''){ ?>
+
                                 </a>
-                            <?php } ?>
+
                         </div>
                          
                     <?php } ?>
@@ -477,6 +475,7 @@
 	<script type="text/javascript" src="<?=base_url('assets/vendor/fancybox/jquery.fancybox.js')?>"></script>
 	<script type="text/javascript" src="<?=base_url('assets/js/active.js')?>"></script>
     <?php $this->load->view('site/__modals/send_ajax');?>
+    <?php $this->load->view('site/__modals/team');?>
 
 </body>
 </html>

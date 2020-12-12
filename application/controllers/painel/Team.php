@@ -50,6 +50,8 @@ class Team extends CI_Controller {
 		$this->form_validation->set_rules('tea_name','Nome','trim|required');
 		$this->form_validation->set_rules('tea_description_pt_br','Descrição em português','trim');
 		$this->form_validation->set_rules('tea_description_en','Descrição em Inglês','trim');
+		$this->form_validation->set_rules('tea_summary_pt_br','Resumo em português','trim');
+		$this->form_validation->set_rules('tea_summary_en','Resumo em Inglês','trim');
 		$this->form_validation->set_rules('tea_link','Link do vídeo','trim|is_unique[team.tea_link]|required',['is_unique'=>'Link de vídeo já adicionado']);
 		$this->form_validation->set_rules('tea_show','Exibir','trim');
 
@@ -76,8 +78,8 @@ class Team extends CI_Controller {
 				
 			}
 
-			$send_data['tea_description_en'] = nl2br2($send_data['tea_description_en']);
-			$send_data['tea_description_pt_br'] = nl2br2($send_data['tea_description_pt_br']);
+			$send_data['tea_summary_en'] = strip_tags(nl2br2($send_data['tea_summary_en']));
+			$send_data['tea_summary_pt_br'] = strip_tags(nl2br2($send_data['tea_summary_pt_br']));
 
 			if(!isset($send_data['tea_show']) || empty($send_data['tea_show'])){
 				$send_data['tea_show'] = 0;
@@ -117,6 +119,8 @@ class Team extends CI_Controller {
 		$this->form_validation->set_rules('tea_name','Nome','trim|required');
 		$this->form_validation->set_rules('tea_description_pt_br','Dia em português','trim');
 		$this->form_validation->set_rules('tea_description_en','Dia em inglês','trim');
+		$this->form_validation->set_rules('tea_summary_pt_br','Resumo em português','trim');
+		$this->form_validation->set_rules('tea_summary_en','Resumo em Inglês','trim');
 		$this->form_validation->set_rules('tea_link','Link personalizado','trim'.((isset($_POST) && isset($_POST['tea_link']) && $_POST['tea_link'] == $teams['tea_link']) ? '':'|is_unique[team.tea_link]'),['is_unique'=>'O link do vídeo precisa ser único.']);
 		$this->form_validation->set_rules('tea_show','Exibir','trim');
 
@@ -127,9 +131,7 @@ class Team extends CI_Controller {
 		}else{
 			$send_data = $this->input->post();
 
-			if(!isset($send_data['tea_link']) || $send_data['tea_link'] == ''){
-				$send_data['tea_link'] = $teams['tea_link'];
-			}
+
 
 			$images = false;
 			if(isset($_FILES['images']['name']) && count($_FILES['images']['name']) > 0){
@@ -149,12 +151,15 @@ class Team extends CI_Controller {
 			}else{
 				$send_data['tea_show'] = 1;
 			}
+
+			$send_data['tea_summary_en'] = strip_tags(nl2br2($send_data['tea_summary_en']));
+			$send_data['tea_summary_pt_br'] = strip_tags(nl2br2($send_data['tea_summary_pt_br']));
 				
 				
 			//fazer o metodo para cadastrar!!!
 			if($updated = $this->team->update($id,$send_data)){
 				if(isset($image_old)){
-					remover_imagem($image_old,'blog');
+					remover_imagem($image_old,'team');
 				}
 
 				set_msg('Membro da equipe adicionado atualizado','success');
