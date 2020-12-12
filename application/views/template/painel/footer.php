@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                ©
 	                <script>
 	                  document.write(new Date().getFullYear())
-	                </script>, desenvolvido por Ethernal Creative Identities para Hennekam Wines
+	                </script>, desenvolvido por Ethernal Creative Identities para <?=SITE_NAME?>
 	              </span>
 	            </div>
 	          </div>
@@ -57,6 +57,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 	<script type="text/javascript" src="<?=base_url('assets/vendor/select2/js/select2.full.js')?>"></script>
     <script type="text/javascript" src="<?=base_url('assets/vendor/select2/i18n/pt-BR.js')?>"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 	
 	<script type="text/javascript" charset="utf-8" src="<?=base_url('assets/js/painel.js')?>"></script>
 	<script type="text/javascript" src="<?=base_url('assets/js/summernote-active.js')?>"></script>

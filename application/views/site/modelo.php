@@ -24,16 +24,14 @@
 		<?=link_tag('assets/vendor/swiper/swiper-bundle.css')?>
 		<?=link_tag('assets/vendor/fancybox/jquery.fancybox.css')?>
 		<?=link_tag('assets/css/style.css?t='.uniqid(rand(0,50).md5(strtotime(date('Y-m-d-H-i-s')))))?>
-		<?php /*<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177863655-1"></script>
-		 <script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-0CZHL1XNSG"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-		  gtag('config', 'UA-177863655-1');
-		</script>
-        */ ?>
+          gtag('config', 'G-0CZHL1XNSG');
+        </script>
 
 	</head>
 <body data-baseurl="<?=base_url()?>" data-csrf="<?=$this->security->get_csrf_token_name()?>" data-lang="<?=get_language()?>">
@@ -272,18 +270,23 @@
                     </div>
                 </div>
                 <?php if(isset($videos) && is_array($videos)){ ?>
-                    <div class="row justify-content-center">
-                        <div class="col-10">
-                            <div class="card-group justify-content-center">
+                    <div id="slide_videos" class="swiper-container py-3">
+                        <div class="swiper-button-prev"></div>   
+                        <div class="swiper-button-next"></div>   
+                        <div class="swiper-wrapper">
+
                                 <?php foreach ($videos as $key => $video) { ?>
-                                    <div class="col-md-6">
-                                        <div class="card border-0">
+                                    <div class="swiper-slide">
+                                        <div class="card border-0 h-100">
                                             <a href="<?=$video['vid_link']?>" data-fancybox="canal" class="play-button no-text">
                                                 <div>
-                                                    <?=img(['src'=>$video['vid_image'], 'class'=>'card-img-top'])?>
+                                                    <?=img(['data-src'=>$video['vid_image'], 'class'=>'card-img-top swiper-lazy'])?>
+                                                     <span class="swiper-lazy-preloader swiper-lazy-preloader-black"></span>
                                                 </div>
                                                 
+                                                
                                             </a>
+
                                             <div class="card-body">
                                                 <a href="<?=$video['vid_link']?>" target="_blank">
                                                     <h4><?=$video['vid_title_'.$lang_bd]?></h4>
@@ -300,10 +303,10 @@
                                         </div>
                                     </div>
                                 <?php } ?>
-                            </div>
+
                         </div>
+
                     </div>       
-                </div>
                 <?php } ?>
             </div>
         </section>
@@ -314,24 +317,24 @@
                     <div class="swiper-wrapper">
                     <?php foreach ($team as $key => $equipe) { ?>
                        
-                        <div class="swiper-slide">
-                            <?php if($equipe['tea_link'] != ''){ ?>
-                            <a href="#">
-                            <?php } ?>
+                        <div class="swiper-slide text-center">
+
+                            <a href="#" data-toggle="modal" data-member="<?=$equipe['tea_id']?>" data-target="#modal_team">
+
                                 <div class="content_team" style="background-image: url('/assets/images/team/<?=$equipe['tea_image'] ? $equipe['tea_image'] : 'user.png'?>')">
                                     
-                                    <div class="content_desc_team">
+                                    <div class="content_desc_team" >
                                         
                                         <h5><?=$equipe['tea_name']?></h5>
                                         
-                                        <?=$equipe['tea_description_'.$lang_bd]?>
+                                        <?=$equipe['tea_summary_'.$lang_bd]?>
                                          
                                     </div>
                                   
                                 </div>
-                            <?php if($equipe['tea_link'] != ''){ ?>
+
                                 </a>
-                            <?php } ?>
+
                         </div>
                          
                     <?php } ?>
@@ -472,6 +475,7 @@
 	<script type="text/javascript" src="<?=base_url('assets/vendor/fancybox/jquery.fancybox.js')?>"></script>
 	<script type="text/javascript" src="<?=base_url('assets/js/active.js')?>"></script>
     <?php $this->load->view('site/__modals/send_ajax');?>
+    <?php $this->load->view('site/__modals/team');?>
 
 </body>
 </html>

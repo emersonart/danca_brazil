@@ -42,9 +42,48 @@ class Videos_model extends CI_Model {
 		return preg_replace(array("/(á|ā|ã|â|ä)/","/(Á|Ā|Ã|Â|Ä)/","/(é|č|ę|ë)/","/(É|Č|Ę|Ë)/","/(í|ė|î|ï)/","/(Í|Ė|Î|Ï)/","/(ó|ō|õ|ô|ö)/","/(Ó|Ō|Õ|Ô|Ö)/","/(ú|ų|û|ü)/","/(Ú|Ų|Û|Ü)/","/(ņ)/","/(Ņ)/"),explode(" ","a A e E i I o O u U n N"),$string);
 	}
 
-	public function get_all(){
+	public function get_all($params = null){
 		
 		$this->db->from($this->table);
+
+		if(isset($params['select'])){
+			$this->db->select($params['select']);
+		}else{
+			$this->db->select('*');
+		}
+
+		if(isset($params['order']) && is_array($params['order'])){
+			foreach ($params['order'] as $key => $value) {
+				$this->db->order_by($key,$value);
+			}
+		}
+		if(isset($params['limit'])){
+			if(is_array($params['limit'])){
+				$this->db->limit($params['limit']['limit'],$params['limit']['initial']);
+			}else{
+				$this->db->limit($params['limit']);
+			}
+		}
+
+		if(isset($params['where']) && is_array($params['where'])){
+			foreach ($params['where'] as $key => $value) {
+				$this->db->where($key,$value);
+			}
+		}
+		if(!isset($params['not_deleted']) || $params['not_deleted'] == false){
+			$this->db->group_start()->where('vid_deleted_at IS NULL',null,true)->or_where('vid_deleted_at',"")->or_where('vid_deleted_at','0000-00-00 00:00:00')->group_end();
+			$this->db->where('vid_show',1);
+		}
+
+		if(isset($params['search']) and $params['search'] != '' and strlen($params['search']) > 0){
+			$params['search'] = $this->db->escape_like_str($params['search']);
+			$params['search'] = $this->limpar_string(utf8_decode(trim($params['search'])));
+			$params['search'] = implode('%',explode(' ',$params['search']));
+			$this->db->group_start();
+			$this->db->or_like('vid_title_pt_br',$params['search'],'both',FALSE);
+			$this->db->or_like('vid_title_en',$params['search'],'both',FALSE);
+			$this->db->group_end();
+		}
 
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
@@ -132,6 +171,23 @@ class Videos_model extends CI_Model {
     {
     	$this->db->where($this->pk,$pk);
     	return $this->db->delete($this->table);
+    }
+
+    public function toggle($vid_id){
+    	$new = $this->get_by_pk($vid_id);
+    	if($new){
+    		if($new['vid_show'] == 1){
+    			$show = 0;
+    		}else{
+    			$show = 1;
+    		}
+    		$this->db->where('vid_id',$vid_id);
+	        $params = [
+	        	'vid_show' => $show
+	        ];
+	        return $this->db->update($this->table,$params);
+    	}
+    	return false;
     }
 
 }

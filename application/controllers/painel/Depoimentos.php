@@ -29,17 +29,17 @@ class Depoimentos extends CI_Controller {
 		
 
 		$data = [
-			'heading' => 'Posts',
+			'heading' => 'Depoimentos',
 			'testimonials' => $news
 		];
 		load_template($data,'testimonials/index');
 	}
 
 	public function remove($id){
-		if(!$this->blog->remove($id)){
-			set_msg('Erro ao remover post','danger');
+		if(!$this->dep->remove($id)){
+			set_msg('Erro ao remover depoimento','danger');
 		}
-		redirect('painel/blog');
+		redirect('painel/depoimentos');
 	}
 
 	public function insert(){

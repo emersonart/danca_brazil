@@ -216,7 +216,7 @@ if(!function_exists('show_menu')){
 			    		</li>
 			    		<li class="nav-item flags">
 			    			<a href="'.base_url('en/'.implode('/',$ci->uri->segments)).'" class="nav-link">
-			    	 			<img src="'.base_url('assets/images/countries/US.png').'" alt="Change to English" title="Change to English" data-toggle="tooltip" data-placement="bottom">
+			    	 			<img src="'.base_url('assets/images/countries/AU.png').'" alt="Change to English" title="Change to English" data-toggle="tooltip" data-placement="bottom">
 			    			</a>
 			    		</li></div>';
 			$return .= '</ul>';
@@ -306,5 +306,18 @@ if(!function_exists('clear_cch')){
 
 		return true;
 		
+	}
+}
+
+if(!function_exists('nl2br2')){
+	function nl2br2($string) {
+		$string = str_replace(array("\r\n", "\r", "\n"), "<br />", $string);
+		return $string;
+	}
+}
+
+if(!function_exists('br2nl')){
+	function br2nl($string){
+	    return preg_replace('/\<br(\s*)?\/?\>/i', "\n", $string);
 	}
 }

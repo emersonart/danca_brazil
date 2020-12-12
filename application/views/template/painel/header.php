@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?=link_tag('assets/vendor/fontawesome/css/all.min.css')?>
 
   	<?=link_tag('assets/vendor/bootstrap/css/bootstrap.min.css')?>
+  	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v4.0.2/bootstrap-float-label.min.css"/>
     <?=link_tag('assets/vendor/DataTables/datatables.min.css')?>
  	  <?=link_tag('assets/vendor/fontawesome/css/all.min.css')?>
@@ -36,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body class="" data-baseurl="<?=base_url()?>"  data-csrf="<?=$this->security->get_csrf_token_name()?>">
   <div class="wrapper ">
-    <div class="sidebar" data-color="black" data-active-color="hennekam">
+    <div class="sidebar" data-color="black" data-active-color="dancabrazil">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -73,8 +74,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <p>Vídeos</p>
             </a>
           </li>
-          <li class="<?=set_active('painel/equipe')?>">
-            <a href="<?=base_url('painel/equipe')?>" >
+          <li class="<?=set_active('painel/team')?>">
+            <a href="<?=base_url('painel/team')?>" >
               <i class="nc-icon nc-email-85"></i>
               <p>Equipe</p>
             </a>

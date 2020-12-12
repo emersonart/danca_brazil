@@ -68,6 +68,38 @@ if(!function_exists('upload_imagem')){
 							$config_upload['height']		 = 406;
 							$config_upload['quality'] 		 = "100%";
 							break;
+						case 'videos':
+							$config_upload['width'] 			= 640;
+							$config_upload['height'] 			= 360;
+							$config_upload['quality'] 		 	= "100%";
+
+							$centerx = round($nova_imagem['image_width']/2);
+							$centery = round($nova_imagem['image_height']/2);
+
+							$cropWidth  = 640;
+							$cropHeight = 360;
+
+							$cropWidthHalf  = round($cropWidth / 2); // could hard-code this but I'm keeping it flexible
+							$cropHeightHalf = round($cropHeight / 2);
+
+							$x1 = max(0, $centerx - $cropWidthHalf  );
+							$y1 = max(0, $centery - $cropHeightHalf);
+
+							$x2 = min($nova_imagem['image_width'], $cropWidth);
+							$y2 = min($nova_imagem['image_height'],  $cropHeight);
+
+							
+							
+
+							if($nova_imagem['image_width'] != $nova_imagem['image_height']){
+								$met = 'crop';
+								$config_upload['x_axis'] = $x1;
+								$config_upload['y_axis'] = $y1;
+								$config_upload['maintain_ratio'] = FALSE;
+								$config_upload['width'] = $x2;
+								$config_upload['height'] = $y2;
+							}
+							break;
 						case 'blog':
 							
 							if($key == 'blo_cover'){
@@ -96,8 +128,42 @@ if(!function_exists('upload_imagem')){
 							$cropWidthHalf  = round($cropWidth / 2); // could hard-code this but I'm keeping it flexible
 							$cropHeightHalf = round($cropHeight / 2);
 
-							$x1 = max(0, $centerx - $cropWidth);
-							$y1 = max(0, $centery - $cropHeight);
+							$x1 = max(0, $centerx - $cropWidthHalf);
+							$y1 = max(0, $centery - $cropHeightHalf);
+
+							$x2 = min($nova_imagem['image_width'], $cropWidth);
+							$y2 = min($nova_imagem['image_height'],  $cropHeight);
+
+							
+							
+
+							if($nova_imagem['image_width'] != $nova_imagem['image_height']){
+								$met = 'crop';
+								$config_upload['x_axis'] = $x1;
+								$config_upload['y_axis'] = $y1;
+								$config_upload['maintain_ratio'] = FALSE;
+								$config_upload['width'] = $x2;
+								$config_upload['height'] = $y2;
+							}else{
+								$config_upload['width'] = 400;
+								$config_upload['maintain_ratio'] = TRUE;
+							}
+
+							
+							break;
+						case 'team':
+							
+							$centerx = round($nova_imagem['image_width']/2);
+							$centery = round($nova_imagem['image_height']/2);
+
+							$cropWidth  = 300;
+							$cropHeight = 300;
+
+							$cropWidthHalf  = round($cropWidth / 2); // could hard-code this but I'm keeping it flexible
+							$cropHeightHalf = round($cropHeight / 2);
+
+							$x1 = max(0, $centerx - $cropWidthHalf);
+							$y1 = max(0, $centery - $cropHeightHalf);
 
 							$x2 = min($nova_imagem['image_width'], $cropWidth);
 							$y2 = min($nova_imagem['image_height'],  $cropHeight);
@@ -129,8 +195,8 @@ if(!function_exists('upload_imagem')){
 							$cropWidthHalf  = round($cropWidth / 2); // could hard-code this but I'm keeping it flexible
 							$cropHeightHalf = round($cropHeight / 2);
 
-							$x1 = max(0, $centerx - $cropWidth);
-							$y1 = max(0, $centery - $cropHeight);
+							$x1 = max(0, $centerx - $cropWidthHalf);
+							$y1 = max(0, $centery - $cropHeightHalf);
 
 							$x2 = min($nova_imagem['image_width'], $cropWidth);
 							$y2 = min($nova_imagem['image_height'],  $cropHeight);

@@ -60,6 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script type="text/javascript" src="<?=base_url('assets/js/active.js')?>"></script>
 		<?php $this->load->view('site/__modals/send_ajax');?>
 		<?php $this->load->view('site/__modals/contact');?>
+		<?php $this->load->view('site/__modals/team');?>
 		<script>
 			$(document).ready(function(){
 				$('#form_search').on('submit',function(e){

@@ -6,20 +6,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header">
-				<a href="<?=base_url('painel/agenda/insert')?>" class="btn btn-sm btn-success float-right">Cadastrar</a>
+				<a href="<?=base_url('painel/cursos/insert')?>" class="btn btn-sm btn-success float-right">Cadastrar</a>
                 <h5 class="title d-inline-block"><?=$heading;?></h5>        
             </div>
             <div class="card-body">
 			<?php 
             
                 $template = array(
-                        'table_open' => '<div class="table-responsive"><table class="table data-table table-hover table-stripped" id="news">',
+                        'table_open' => '<div class="table-responsive"><table class="table data-table table-hover table-stripped" id="cursos">',
                         'table_close' => '</table></div>',
                         'thead_open' => '<thead style="background: #F2F2F2">'
                 );
                 $this->table->set_template($template);
-                $this->table->set_heading(array('Id','Data','PT BR','Inglês','Exibir','Ações'));
-                echo $this->table->generate($agenda);
+                $this->table->set_heading(array('Id','Data','Nome em Inglês','Nome em português','Exibir','Ações'));
+                echo $this->table->generate($cursos);
 
         	?>
             </div>

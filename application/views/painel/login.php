@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login Hennekam</title>
+  <title>Login <?=SITE_NAME?></title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 <meta name="viewport" content="width=device-width">
@@ -45,7 +45,7 @@ a:hover {
 html,
 body {
   height: 100%;
-  background: url('<?=base_url('assets/images/masterhead.png')?>');
+  background: url('<?=base_url('assets/images/bg.png')?>');
   background-position: center center;
   background-size: cover;
 }
@@ -147,7 +147,7 @@ h1{
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="masthead mb-auto">
     <div class="inner">
-      <h3 class="masthead-brand">Henekam</h3>
+      <h3 class="masthead-brand"><?=SITE_NAME?></h3>
       <nav class="nav nav-masthead justify-content-center">
         <a class="nav-link active" href="<?=base_url()?>">Voltar ao site</a>
       </nav>

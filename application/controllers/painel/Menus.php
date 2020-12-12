@@ -29,7 +29,7 @@ class Menus extends CI_Controller {
 		
 
 		$data = [
-			'heading' => 'Posts',
+			'heading' => 'Menu',
 			'menus' => $menus
 		];
 		load_template($data,'menus/index');

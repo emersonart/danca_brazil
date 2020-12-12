@@ -42,7 +42,31 @@ class Team_model extends CI_Model {
 		return preg_replace(array("/(á|ā|ã|â|ä)/","/(Á|Ā|Ã|Â|Ä)/","/(é|č|ę|ë)/","/(É|Č|Ę|Ë)/","/(í|ė|î|ï)/","/(Í|Ė|Î|Ï)/","/(ó|ō|õ|ô|ö)/","/(Ó|Ō|Õ|Ô|Ö)/","/(ú|ų|û|ü)/","/(Ú|Ų|Û|Ü)/","/(ņ)/","/(Ņ)/"),explode(" ","a A e E i I o O u U n N"),$string);
 	}
 
-	public function get_all(){
+	public function get_all($params = null){
+
+		if(isset($params['where']) && is_array($params['where'])){
+			foreach ($params['where'] as $key => $value) {
+				$this->db->where($key,$value);
+			}
+		}
+		if(isset($params['select'])){
+			$this->db->select($params['select']);
+		}else{
+			$this->db->select('*');
+		}
+		if(isset($params['limit'])){
+			if(is_array($params['limit'])){
+				$this->db->limit($params['limit']['initial'],$params['limit']['limit']);
+			}else{
+				$this->db->limit($params['limit']);
+			}
+		}
+
+		if(isset($params['order']) && is_array($params['order'])){
+			foreach ($params['order'] as $key => $value) {
+				$this->db->order_by($key,$value);
+			}
+		}
 		
 		$this->db->from($this->table);
 
@@ -65,6 +89,23 @@ class Team_model extends CI_Model {
 		}
 		return false;
 	}
+
+	public function toggle($tea_id){
+    	$team = $this->get_by_pk($tea_id);
+    	if($team){
+    		if($team['tea_show'] == 1){
+    			$show = 0;
+    		}else{
+    			$show = 1;
+    		}
+    		$this->db->where('tea_id',$tea_id);
+	        $params = [
+	        	'tea_show' => $show
+	        ];
+	        return $this->db->update($this->table,$params);
+    	}
+    	return false;
+    }
 
 	public function get($params = FALSE){
 		if(isset($params['where']) && is_array($params['where'])){
