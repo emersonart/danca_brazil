@@ -6,17 +6,23 @@ class Team extends CI_Controller {
 		parent::__construct();
 		$this->load->library("pagination");
 		$this->load->model('Team_model','team');
+		$this->load->helper('path');
 	}
 
 
 	public function index(){
-		$params['select'] = "tea_id, tea_datetime,tea_name,tea_show";
+		$params['select'] = "tea_id,tea_image, tea_datetime,tea_name,tea_show";
 		$params['order'] = ["tea_id"=>"desc"];
 		$teams = $this->team->get_all($params);
-		
+		$imageFolder = set_realpath('assets/images/team');
 
 		if($teams){
 			foreach ($teams as $ln => $team) {
+				$image = 'assets/images/user.png';
+				if($team['tea_image'] != '' && is_file($imageFolder.$team['tea_image'])){
+					$image = 'assets/images/team/'.$team['tea_image'];
+				}
+				$teams[$ln]['tea_image'] = ['data'=>'<img src="'.base_url($image).'" class="img-fluid rounded-circle" style="width:40px"/>','style'=>'width: 40px'];
 				$teams[$ln]['tea_datetime'] = date('d/m/Y \à\s H:i',strtotime($team['tea_datetime']));
 				$teams[$ln]['tea_show'] = $team['tea_show'] == 1 ? 'Sim' : 'Não';
 				$eo = $team['tea_show'] == 1 ? "<i class='far fa-eye'></i>" : "<i class='far fa-eye-slash'></i>";
@@ -25,6 +31,7 @@ class Team extends CI_Controller {
 				$teams[$ln]['botoes'] .= "<a href='".base_url('painel/team/update/'.$team['tea_id'])."' class='btn btn-sm btn-primary'><i class='far fa-edit'></i></a> ";
 				$teams[$ln]['botoes'] .= "<a href='".base_url('painel/team/toggle/'.$team['tea_id'])."' class='btn btn-sm btn-".$cl."'>".$eo."</a> ";
 				$teams[$ln]['botoes'] .= "<a href='".base_url('painel/team/remove/'.$team['tea_id'])."' class='btn btn-sm btn-danger'><i class='far fa-trash-alt'></i></a> ";
+				unset($teams[$ln]['tea_id']);
 			}
 		}
 

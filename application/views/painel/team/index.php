@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						'thead_open' => '<thead style="background: #F2F2F2">'
 				);
 				$this->table->set_template($template);
-				$this->table->set_heading(array('Id','Data','Nome','Exibir','Ações'));
+				$this->table->set_heading(array('','Data','Nome','Exibir','Ações'));
 				echo $this->table->generate($team);
 
 			?>

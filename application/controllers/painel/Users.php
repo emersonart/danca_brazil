@@ -6,15 +6,23 @@ class Users extends CI_Controller {
 		parent::__construct();
 		$this->load->library("pagination");
 		$this->load->model('users_model','users');
+		$this->load->helper('path');
 	}
 
 	public function index(){
-		$params['select'] = "use_id, use_datetime,use_name, use_email,use_nickname,use_stu_id";
+
+		$imageFolder = set_realpath('assets/images/users');
+		$params['select'] = "use_id,use_avatar, use_datetime,use_name, use_email,use_nickname,use_stu_id";
 		$params['order'] = ["use_id"=>"desc"];
 		$users = $this->users->get_all($params);
 		if($users){
 			foreach ($users as $ln => $user) {
-				$users[$ln]['use_id'] = ['data'=>$user['use_id'],'style'=>'width: 40px'];
+				$image = 'assets/images/user.png';
+				if($user['use_avatar'] != '' && is_file($imageFolder.$user['use_avatar'])){
+					$image = 'assets/images/users/'.$user['use_avatar'];
+				}
+
+				$users[$ln]['use_avatar'] = ['data'=>'<img src="'.base_url($image).'" class="img-fluid rounded-circle" style="width:40px"/>','style'=>'width: 40px'];
 				$users[$ln]['use_datetime'] = ['data'=>date('d/m/Y \à\s H:i',strtotime($user['use_datetime'])),'style'=>'width: 150px'];
 				$users[$ln]['use_stu_id'] = $user['use_stu_id'] == 1 ? 'Sim' : 'Não';
 				$eo = $user['use_stu_id'] == 1 ? "<i class='far fa-eye'></i>" : "<i class='far fa-eye-slash'></i>";
@@ -24,6 +32,7 @@ class Users extends CI_Controller {
 				$users[$ln]['botoes'] .= "<a href='".base_url('painel/users/toggle/'.$user['use_id'])."' class='btn btn-sm btn-".$cl."'>".$eo."</a> ";
 				$users[$ln]['botoes'] = ['style'=>'width: 180px','data'=>$users[$ln]['botoes']];
 				unset($users[$ln]['use_stu_id']);
+				unset($users[$ln]['use_id']);
 			}
 		}
 		$data = [
